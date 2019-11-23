@@ -1,0 +1,91 @@
+@import '../../../../styles/abstract/variables';
+@import '../../../../styles/abstract/mixins';
+
+:root {
+  --color-button-primary: var(--color-primary);
+  --color-button-primary-border: var(--color-button-primary);
+  --color-button-primary-text: #FFF;
+  --color-button-primary-hover: #1E89DE;
+  --color-button-primary-active: #1C80CF;
+
+  --color-button-secondary: var(--color-secondary);
+  --color-button-secondary-border: #DFE5EC;
+  --color-button-secondary-text: var(--color-text-base);
+  --color-button-secondary-hover: var(--color-option-hover-bg);
+  --color-button-secondary-active: var(--color-option-active-bg);
+}
+
+.btn {
+  $transitionTime: .1s;
+  user-select: none;
+  display: inline-block;
+  padding: 8px 12px;
+
+  border: 1px solid transparent;
+  border-radius: $border-radius-base;
+  @include button-text;
+  text-decoration: none;
+
+  background: red;
+  color: #FFF;
+  text-align: center;
+
+  transition: background-color $transitionTime, border-color $transitionTime, opacity $transitionTime;
+  cursor: pointer;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include word-break;
+
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.is-loading {
+    //todo
+  }
+
+  &:focus {
+    box-shadow: var(--default-focus-shadow);
+  }
+}
+
+.btn--primary {
+  background: var(--color-button-primary);
+  border-color: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+
+  &:hover {
+    --color-button-primary: var(--color-button-primary-hover)
+  }
+
+  &:active {
+    --color-button-primary: var(--color-button-primary-active)
+  }
+}
+
+.btn--secondary {
+  background: var(--color-button-secondary);
+  border-color: var(--color-button-secondary-border);
+  color: var(--color-button-secondary-text);
+
+  &:hover {
+    --color-button-secondary: var(--color-button-secondary-hover)
+  }
+
+  &:active {
+    --color-button-secondary: var(--color-button-secondary-active)
+  }
+}
+
+.btn--lg {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}

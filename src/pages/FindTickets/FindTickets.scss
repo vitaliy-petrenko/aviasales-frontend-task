@@ -1,0 +1,37 @@
+@import '../../styles/abstract/variables';
+@import '../../styles/abstract/mixins';
+
+.find-tickets {
+
+}
+
+.find-tickets__top {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.find-tickets__row {
+  * + & {
+    margin-top: $grid-base;
+  }
+}
+
+.find-tickets-list {
+
+}
+
+.find-tickets-list__item {
+  * + & {
+    margin-top: $grid-base;
+  }
+}
+
+.find-tickets-list__not-found {
+  text-align: center;
+  padding: $grid-base;
+  max-width: 320px;
+  margin: auto;
+  @include font-size-lg;
+  font-weight: 400;
+}

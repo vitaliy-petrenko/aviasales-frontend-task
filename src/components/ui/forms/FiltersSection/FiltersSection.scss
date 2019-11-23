@@ -1,0 +1,32 @@
+@import '../../../../styles/abstract/mixins';
+@import '../../../../styles/abstract/variables';
+
+.filters-section {
+  @include panel;
+  @include panel-body;
+
+  .checkbox {
+    padding: $grid-base/2 $grid-base;
+    transition: background-color .1s;
+
+    &:hover {
+      background: var(--color-option-hover-bg);
+    }
+
+    &:active {
+      background: var(--color-option-active-bg);
+    }
+  }
+}
+
+.filters-section__title {
+  @include button-text;
+  @include word-break;
+  line-height: 1;
+}
+
+.filters-section__body {
+  @include panel-x-offset-fix;
+  margin-top: $grid-base/2;
+  margin-bottom: -$grid-base/2;
+}

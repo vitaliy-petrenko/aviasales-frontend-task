@@ -1,0 +1,21 @@
+:root {
+  --color-general-background: #F3F7FA;
+
+  --color-text-base: #4A4A4A;
+  --color-text-label: #A0B0B9;
+
+  --color-primary: #2196F3;
+  --color-secondary: #FFF;
+
+  --color-box-shadow-base: rgba(0, 0, 0, 0.1);
+
+  --color-panel-background: #FFF;
+
+  --color-form-option: #9ABBCE;
+  --color-form-option-active: var(--color-primary);
+
+  --color-option-hover-bg: #F1FCFF;
+  --color-option-active-bg: #EEF9FC;
+
+  --default-focus-shadow: 0 0 2px var(--color-primary)
+}

@@ -1,0 +1,39 @@
+@import '../../../styles/abstract/variables';
+@import '../../../styles/abstract/mixins';
+
+$sidebarWidth: 232px;
+$layoutOffset: $grid-base;
+
+.layout {
+  max-width: 796px;
+  margin: 0 auto $grid-xxl;
+  display: flex;
+  align-items: flex-start;
+  padding: 0 $layoutOffset;
+}
+
+.layout__sidebar {
+  flex: 0 0 $sidebarWidth;
+  width: 100%;
+  margin-right: $layoutOffset;
+
+  & > * + * {
+    margin-top: $grid-base;
+  }
+}
+
+.layout__main {
+
+}
+
+@media screen and (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .layout__sidebar {
+    flex: 1;
+    margin-bottom: $layoutOffset;
+    margin-right: 0;
+  }
+}

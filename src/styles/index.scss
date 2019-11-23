@@ -1,0 +1,39 @@
+@import './reset';
+@import './colors';
+@import 'abstract/variables';
+@import 'abstract/mixins';
+@import './font';
+
+html {
+  background: var(--color-general-background);
+  color: var(--color-text-base);
+  @include font-size-base;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: calc(100vw - 100%);
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+// Animation
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -1000px 0
+  }
+  100% {
+    background-position: 1000px 0
+  }
+}
+
+.animated-background-loading {
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: var(--color-general-background);
+  background: linear-gradient(to right, var(--color-general-background) 8%, #FFF 18%, var(--color-general-background) 33%);
+  background-size: 800px 104px;
+  position: relative;
+}

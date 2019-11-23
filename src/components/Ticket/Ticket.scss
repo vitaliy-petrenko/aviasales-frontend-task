@@ -1,0 +1,89 @@
+@import '../../styles/abstract/variables';
+@import '../../styles/abstract/mixins';
+
+$ticket-max-image-height: 36px;
+
+.ticket {
+  @include panel;
+  @include panel-body;
+}
+
+.ticket__row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.ticket__col {
+  flex: 1;
+}
+
+.ticket__header {
+  .ticket__row {
+    align-items: center;
+  }
+
+  .ticket__col {
+    &:first-child {
+      flex: 2;
+    }
+  }
+}
+
+.ticket__body {
+  margin-top: $grid-base;
+}
+
+.ticket-price {
+  @include font-size-xxxl;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.ticket-company-logo {
+  img {
+    max-height: $ticket-max-image-height;
+    max-width: 100%;
+  }
+}
+
+.ticket-segments {
+  .ticket__row {
+    margin-top: $grid-base/2;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.ticket-loading {
+  .ticket__header & {
+    height: $ticket-max-image-height;
+    max-width: 140px;
+  }
+
+  .ticket__header .ticket__col:first-child & {
+    height: 24px
+  }
+
+  .ticket__body & {
+    margin-top: $grid-xxxs;
+    max-width: 80px;
+    height: 40px
+  }
+}
+
+.ticket-segment-item {
+  @include word-break
+}
+
+.ticket-segment-item__label {
+  @include font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+}
+
+.ticket-segment-item__value {
+  @include font-size-lg;
+}
