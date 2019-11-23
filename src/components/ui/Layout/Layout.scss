@@ -23,7 +23,7 @@ $layoutOffset: $grid-base;
 }
 
 .layout__main {
-
+  flex: 1;
 }
 
 @media screen and (max-width: 768px) {

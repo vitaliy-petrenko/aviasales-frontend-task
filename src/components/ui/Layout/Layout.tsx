@@ -2,7 +2,7 @@ import React from 'react'
 import './Layout.scss'
 
 interface IProps {
-  Sidebar?: React.ComponentType,
+  Sidebar?: React.ComponentType
 }
 
 const Layout: React.FC<IProps> = ({ Sidebar, children }) => (

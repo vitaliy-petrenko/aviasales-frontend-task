@@ -6,7 +6,7 @@ export interface IBEMProps {
   isDisabled?: boolean
   isActive?: boolean
   modifiers?: string[]
-  mix?: string,
+  mix?: string
 }
 
 export const makeBemClassNames =

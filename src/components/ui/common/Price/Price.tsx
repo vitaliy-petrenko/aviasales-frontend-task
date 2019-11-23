@@ -1,17 +1,24 @@
 import React from 'react'
+import { TCurrency } from '../../../../store/common/types'
 
-interface IProps {
+export interface IProps {
   value: number
+  currency: TCurrency
 }
 
 const format = (value: number): string => value.toLocaleString()
 
-const Price: React.FC<IProps> = ({ value }) => {
-  //todo: move to store
-  const currency = 'Р'
+const Price: React.FC<IProps> = ({ value, currency }) => {
+  const
+    formatted = format(value),
+    symbol = currency.symbol
+
+  if (currency.name === 'USD') return (
+    <>{`${symbol}${formatted}`}</>
+  )
 
   return (
-    <>{`${format(value)} ${currency}`}</>
+    <>{`${formatted} ${symbol}`}</>
   )
 }
 

@@ -1,9 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import './styles/index.scss'
 import App from './App'
-import { translationsInitialize } from './services/translation'
+import store from './store'
+import { fetchTickets } from './api/tickets'
+import init from './store/initialize'
 
-translationsInitialize('ru-RU')
+const
+  render = () => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <App/>
+      </Provider>,
+      document.getElementById('root'))
+  }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+fetchTickets()
+  .catch(console.warn)
+
+console.log(store.getState())
+
+init(store.getState())
+store.subscribe(render)
+
+render()
