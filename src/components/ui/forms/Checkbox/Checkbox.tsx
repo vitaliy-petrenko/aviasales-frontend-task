@@ -3,9 +3,9 @@ import { ReactComponent as ICheck } from '../../../../assets/icons/check.svg'
 import './Checkbox.scss'
 
 interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
-  onChange(value: boolean): void
-
   type?: string
+
+  onChange(value: boolean): void
 }
 
 const Checkbox: React.FC<IProps> = ({ children, onChange, type = 'checkbox', ...rest }) => {

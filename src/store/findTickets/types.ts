@@ -1,4 +1,4 @@
-import { IActionBase } from '../types'
+import { IActionBase, IPagination } from '../types'
 
 export interface ITicketSegment {
   // Код города (iata)
@@ -24,36 +24,35 @@ export interface ITicket {
   segments: ITicketSegment[]
 }
 
-export interface ITicketFilters {
-  transfers: {
-    all: boolean
-    options: number[]
-  }
+export interface ITicketFiltersTransfer {
+  all: boolean
+  options: number[]
 }
 
-export interface ITicketsState {
-  list: ITicket[],
+export interface ITicketFilters {
+  transfers: ITicketFiltersTransfer
+}
+
+export interface ITicketStatuses {
   isFetching: boolean,
   isError: boolean,
 }
 
-export type TSortBy = number;
+export enum ETicketsSortBy {price, time}
 
 export interface IFindTicketsState {
-  tickets: ITicketsState
-  sortBy: TSortBy
+  tickets: ITicket[]
+  statuses: ITicketStatuses
+  sortBy: ETicketsSortBy
   filters: ITicketFilters
+  pagination: IPagination
 }
 
 /** tickets section */
-export type TActionFetchingStatus = IActionBase<boolean>
 export type TActionAddTickets = IActionBase<ITicket[]>
-export type TActionsTickets = TActionFetchingStatus | TActionAddTickets
 
 /** sort section */
-export type TActionSortBy = IActionBase<TSortBy>
+export type TActionSortBy = IActionBase<ETicketsSortBy>
 
 /** filters section */
 export type TActionFilterTransfersToggleOption = IActionBase<number>
-export type TActionFilterTransfersToggleAll = IActionBase<boolean>
-export type TActionsFilters = TActionFilterTransfersToggleOption | TActionFilterTransfersToggleAll

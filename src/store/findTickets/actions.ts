@@ -1,1 +1,2 @@
-export const selector = () => {}
+export const selector = () => {
+}

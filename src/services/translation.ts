@@ -12,7 +12,7 @@ class TranslationService {
             translation: ruTranslation
           },
         },
-        lng: 'ru-RU',
+        lng: language,
         fallbackLng: 'ru-RU',
 
         interpolation: {
@@ -22,4 +22,4 @@ class TranslationService {
   }
 }
 
-export default new TranslationService();
+export default new TranslationService()

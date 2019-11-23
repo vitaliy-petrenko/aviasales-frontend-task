@@ -19,8 +19,6 @@ const
 fetchTickets()
   .catch(console.warn)
 
-console.log(store.getState())
-
 init(store.getState())
 store.subscribe(render)
 
