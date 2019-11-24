@@ -1,15 +1,9 @@
 import { fetchTickets as apiFetchTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { TActionFetchingStatus, TActionWithOnlyType, TAppAnyAction } from '../types'
-import {
-  ETicketsSortBy,
-  ITicket,
-  TActionAddTickets,
-  TActionFilterTransfers,
-  TActionFilterTransfersSetMaxTransfersCount,
-  TActionSortBy
-} from './types'
+import { ETicketsSortBy, ITicket, TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './types'
 import { Dispatch } from 'react'
+import { orderedArray } from '../../helpers/misc'
 
 const setFetchingStatus = (status: boolean): TActionFetchingStatus => ({
   type: ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
@@ -35,19 +29,22 @@ export const selectSortBy = (sortBy: ETicketsSortBy): TActionSortBy => ({
   payload: sortBy,
 })
 
-const setMaxTransfersCount = (count: number): TActionFilterTransfersSetMaxTransfersCount => ({
-  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_MAX_TRANSFERS_COUNT,
-  payload: count,
+export const setAvailableOptions = (options: number[]): TActionFilterTransfers => ({
+  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS,
+  payload: options,
 })
 
-const getMaxTransfersCount = (tickets: ITicket[]): number => {
+export const setSelectedOptions = (options: number[]): TActionFilterTransfers => ({
+  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS,
+  payload: options
+})
+
+const getAvailableOptions = (tickets: ITicket[]): number[] => {
   let count = 0
 
-  const x = performance.now()
   tickets.forEach(ticket => ticket.segments.forEach(({ stops }) => count = Math.max(count, stops.length)))
-  console.log(performance.now() - x)
 
-  return count
+  return orderedArray(count)
 }
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
@@ -57,7 +54,7 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   apiFetchTickets()
     .then(tickets => {
       dispatch(addTickets(tickets))
-      dispatch(setMaxTransfersCount(getMaxTransfersCount(tickets)))
+      dispatch(setAvailableOptions(getAvailableOptions(tickets)))
     })
     .catch(() => {
       dispatch(setFetchingErrorStatus(true))
@@ -66,8 +63,3 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
       dispatch(setFetchingStatus(false))
     })
 }
-
-export const toggleTransfersOption = (count: number): TActionFilterTransfers => ({
-  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.TOGGLE_OPTION,
-  payload: count
-})

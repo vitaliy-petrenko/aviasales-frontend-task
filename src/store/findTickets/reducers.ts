@@ -1,7 +1,7 @@
 import { ETicketsSortBy, IFindTicketsState, TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './types'
 import ACTION_TYPES from '../actionTypes'
 import { IPagination, TActionFetchingStatus } from '../types'
-import { orderedArray, toggleInArray } from '../../helpers/misc'
+import { orderedArray } from '../../helpers/misc'
 
 const INITIAL_STATE: IFindTicketsState = {
   fetchingStatuses: {
@@ -15,8 +15,8 @@ const INITIAL_STATE: IFindTicketsState = {
 
   filters: {
     transfers: {
-      options: orderedArray(2),
-      maxTransfersCount: 2,
+      available: orderedArray(2),
+      selected: orderedArray(2),
     }
   },
 
@@ -27,29 +27,22 @@ const INITIAL_STATE: IFindTicketsState = {
 }
 
 export const transfers = (state = INITIAL_STATE.filters.transfers, { type, payload }: TActionFilterTransfers) => {
-  const
-    { options, maxTransfersCount } = state,
-    isMaximumSelected = options.length === maxTransfersCount
-
   switch (type) {
-    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.TOGGLE_OPTION: {
-      if (payload === -1) {
-        return ({
-          ...state,
-          options: isMaximumSelected ? [] : orderedArray(maxTransfersCount),
-        })
-      } else {
-        return {
-          ...state,
-          options: toggleInArray(options, payload),
-        }
+    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS: {
+      return {
+        ...state,
+        selected: payload,
       }
     }
 
-    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_MAX_TRANSFERS_COUNT: {
+    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS: {
+      const
+        { selected, available } = state,
+        isAllOptionsSelected = selected.length === available.length
+
       return {
-        options: isMaximumSelected ? orderedArray(payload) : [...options],
-        maxTransfersCount: payload
+        selected: isAllOptionsSelected ? [...payload] : selected,
+        available: payload,
       }
     }
 

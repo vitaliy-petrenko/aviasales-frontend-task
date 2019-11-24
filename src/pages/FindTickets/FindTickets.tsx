@@ -19,10 +19,6 @@ class FindTickets extends React.Component<IProps> {
     this.props.fetchTickets()
   }
 
-  componentWillUnmount(): void {
-    this.props.clearTickets()
-  }
-
   render() {
     const { fetchTickets, fetchingStatuses, tickets } = this.props
 

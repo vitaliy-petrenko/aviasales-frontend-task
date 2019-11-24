@@ -10,8 +10,8 @@ export interface ITicket extends IBaseTicket<ITicketSegment> {
 }
 
 export interface ITicketFiltersTransfer {
-  maxTransfersCount: number
-  options: number[]
+  available: number[]
+  selected: number[]
 }
 
 export interface ITicketFilters {
@@ -40,6 +40,5 @@ export type TActionAddTickets = IActionBase<ITicket[]>
 export type TActionSortBy = IActionBase<ETicketsSortBy>
 
 /** filters section */
-export type TActionFilterTransfersToggleOption = IActionBase<number>
-export type TActionFilterTransfersSetMaxTransfersCount = IActionBase<number>
-export type TActionFilterTransfers = TActionFilterTransfersToggleOption | TActionFilterTransfersSetMaxTransfersCount
+export type TActionFilterTransfers = IActionBase<number[]>
+

@@ -5,17 +5,17 @@ import Sidebar, { IProps } from './Sidebar'
 import { IState } from '../../../store/rootReducer'
 import { getFilters } from '../../../store/findTickets/selectors'
 import { TAppAnyAction } from '../../../store/types'
-import { toggleTransfersOption } from '../../../store/findTickets/actions'
+import { setSelectedOptions } from '../../../store/findTickets/actions'
 
 type TStateProps = Pick<IProps, 'filters'>;
-type TDispatchProps = Pick<IProps, 'toggleTransfersOption'>
+type TDispatchProps = Pick<IProps, 'setSelectedOptions'>
 
 const mapStateToProps = (state: IState): TStateProps => ({
   filters: getFilters(state)
 })
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IState, {}, TAppAnyAction>): TDispatchProps => ({
-  toggleTransfersOption: bindActionCreators(toggleTransfersOption, dispatch),
+  setSelectedOptions: bindActionCreators(setSelectedOptions, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

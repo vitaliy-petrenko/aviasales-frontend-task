@@ -23,7 +23,7 @@ export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketF
 
       let count = 0
 
-      allStops.forEach(stopCount => transfers.options.includes(stopCount) && count++)
+      allStops.forEach(stopCount => transfers.selected.includes(stopCount) && count++)
 
       return count === allStops.length
     })

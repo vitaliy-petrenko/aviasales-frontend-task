@@ -1,7 +1,5 @@
 export const formatFromTo = (arr: Array<string | number>): string => arr.join(' - ')
 
-export const formatDateRange = (date: number | string, duration: number) => `${date} - ${duration}`
-
 export type TDurationParsed = {
   days?: number
   hours?: number
