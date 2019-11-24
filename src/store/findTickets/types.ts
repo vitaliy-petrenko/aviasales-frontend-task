@@ -1,4 +1,4 @@
-import { IActionBase, IPagination } from '../types'
+import { IActionBase, IFetchingStatuses, IPagination } from '../types'
 
 export interface IBaseTicketSegment {
   // Код города (iata)
@@ -40,16 +40,11 @@ export interface ITicketFilters {
   transfers: ITicketFiltersTransfer
 }
 
-export interface ITicketsFetchingStatuses {
-  isFetching: boolean
-  isError: boolean
-}
-
 export enum ETicketsSortBy {price, duration}
 
 export interface IFindTicketsState {
   tickets: ITicket[]
-  fetchingStatuses: ITicketsFetchingStatuses
+  statuses: IFetchingStatuses
   sortBy: ETicketsSortBy
   filters: ITicketFilters
   pagination: IPagination

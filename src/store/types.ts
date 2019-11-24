@@ -16,6 +16,11 @@ export interface IPagination {
   limit: number
 }
 
+export interface IFetchingStatuses {
+  isFetching: boolean
+  isError: boolean
+}
+
 export type TAppAnyAction =
   | TActionFetchingStatus
   | TActionAddTickets

@@ -1,38 +1,41 @@
 import React from 'react'
 import Ticket, { TicketLoading } from '../../../components/Ticket/Ticket'
-import { IProps } from '../FindTickets'
 import FadeIn from '../../../components/ui/common/FadeIn'
 import { useTranslation } from 'react-i18next'
+import { ITicket } from '../../../store/findTickets/types'
+import { IFetchingStatuses } from '../../../store/types'
 
-const TicketsList: React.FC<Omit<IProps, 'clearTickets'>> = ({ fetchTickets, fetchingStatuses, tickets }) => (
-  <div className='tickets-list'>
-    {fetchingStatuses.isFetching && (
-      <Loading/>
-    )}
+export interface IProps {
+  statuses: IFetchingStatuses,
+  tickets: ITicket[]
+}
 
-    {
-      tickets.map(ticket => (
-        <div className='tickets-list__item' key={ticket.id}>
-          <FadeIn initialX={8} duration={.2}>
-            <Ticket ticket={ticket}/>
-          </FadeIn>
-        </div>
-      ))
-    }
-
-    {!tickets.length && !fetchingStatuses.isFetching && (
+const TicketsList: React.FC<Omit<IProps, 'isError'>> = ({ statuses, tickets }) => {
+  const
+    list = tickets.map(ticket => (
+      <div className='tickets-list__item' key={ticket.id}>
+        <FadeIn initialX={8} duration={.2}>
+          <Ticket ticket={ticket}/>
+        </FadeIn>
+      </div>
+    )),
+    notFound = !tickets.length && !statuses.isFetching && (
       <div className='tickets-list__item'>
         <TicketsNotFound/>
       </div>
-    )}
+    )
 
-    {fetchingStatuses.isError && (
-      <div className='tickets-list__item'>
-        'Error'
-      </div>
-    )}
-  </div>
-)
+
+  return (
+    <div className='tickets-list'>
+      {statuses.isFetching && (
+        <Loading/>
+      )}
+      {list}
+      {notFound}
+    </div>
+  )
+}
 
 const Loading: React.FC = () => (
   <>

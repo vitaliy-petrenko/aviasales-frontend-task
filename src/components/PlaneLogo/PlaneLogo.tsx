@@ -2,8 +2,8 @@ import React from 'react'
 import './PlaneLogo.scss'
 import { motion } from 'framer-motion'
 
-interface IProps {
-  animated?: boolean
+export interface IProps {
+  animated: boolean
 }
 
 const PlaneLogo: React.FC<IProps> = ({ animated = false }) => {

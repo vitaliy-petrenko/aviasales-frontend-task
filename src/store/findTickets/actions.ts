@@ -52,10 +52,11 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   dispatch(setFetchingStatus(true))
 
   apiFetchTickets()
-    .then(tickets => {
-      dispatch(addTickets(tickets))
-      dispatch(setAvailableOptions(getAvailableOptions(tickets)))
-    })
+    .then(
+      tickets => {
+        dispatch(addTickets(tickets))
+        dispatch(setAvailableOptions(getAvailableOptions(tickets)))
+      })
     .catch(() => {
       dispatch(setFetchingErrorStatus(true))
     })

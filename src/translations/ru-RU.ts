@@ -21,16 +21,23 @@ const labels = {
     daysShort: 'д',
     hoursShort: 'ч',
     minutesShort: 'м',
-  }
+  },
+
+  reload: 'перезагрузить',
+}
+
+const commonMessages = {
+  error: 'Что то пошло не так',
 }
 
 const tickets = {
   duration: 'В пути',
-  notFound: 'По выбранным критериям нет билетов, попробуйте изменить поиск ✈️'
+  notFound: 'По выбранным критериям нет билетов, попробуйте изменить поиск ✈️',
 }
 
 export default {
   findTickets,
   tickets,
   labels,
+  commonMessages,
 }

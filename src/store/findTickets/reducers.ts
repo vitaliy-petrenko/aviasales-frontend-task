@@ -4,7 +4,7 @@ import { IPagination, TActionFetchingStatus } from '../types'
 import { orderedArray } from '../../helpers/misc'
 
 const INITIAL_STATE: IFindTicketsState = {
-  fetchingStatuses: {
+  statuses: {
     isFetching: false,
     isError: false,
   },
@@ -74,7 +74,7 @@ export const tickets = (state = INITIAL_STATE.tickets, { type, payload }: TActio
   }
 }
 
-export const fetchingStatuses = (state = INITIAL_STATE.fetchingStatuses, { type, payload }: TActionFetchingStatus) => {
+export const statuses = (state = INITIAL_STATE.statuses, { type, payload }: TActionFetchingStatus) => {
   switch (type) {
     case ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING: {
       return {

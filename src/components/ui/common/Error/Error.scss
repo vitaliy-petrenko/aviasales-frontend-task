@@ -1,0 +1,18 @@
+@import '../../../../styles/abstract/mixins';
+@import '../../../../styles/abstract/variables';
+
+.error {
+  @include panel;
+  @include panel-body;
+  display: flex;
+  align-items: center;
+}
+
+.error__message {
+  flex: 1;
+}
+
+.error__children {
+  margin-left: auto;
+  text-align: right;
+}
