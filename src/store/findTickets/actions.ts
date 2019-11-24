@@ -1,8 +1,8 @@
+import { Dispatch } from 'react'
 import { fetchTickets as apiFetchTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { TActionFetchingStatus, TActionWithOnlyType, TAppAnyAction } from '../types'
 import { ETicketsSortBy, ITicket, TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './types'
-import { Dispatch } from 'react'
 import { orderedArray } from '../../helpers/misc'
 
 const setFetchingStatus = (status: boolean): TActionFetchingStatus => ({

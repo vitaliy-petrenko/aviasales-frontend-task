@@ -22,7 +22,7 @@ const INITIAL_STATE: IFindTicketsState = {
 
   pagination: {
     offset: 0,
-    limit: 10,
+    limit: 5,
   },
 }
 

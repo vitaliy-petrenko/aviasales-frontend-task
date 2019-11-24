@@ -1,7 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import Button from '../../../components/ui/forms/Button'
 import ButtonGroup from '../../../components/ui/forms/ButtonGroup'
-import { useTranslation } from 'react-i18next'
 import { ETicketsSortBy, TActionSortBy } from '../../../store/findTickets/types'
 
 export interface IProps {

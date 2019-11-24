@@ -29,6 +29,7 @@ export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketF
     })
   })
 
+
 const accumulateDuration = (segments: ITicketSegment[]): number => {
   return segments.reduce((accumulate, { duration }) => accumulate + duration, 0)
 }

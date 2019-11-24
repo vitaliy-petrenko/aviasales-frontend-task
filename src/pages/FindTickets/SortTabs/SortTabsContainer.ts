@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
-import SortTabs, { IProps } from './SortTabs'
 import { IState } from '../../../store/rootReducer'
 import { getSortBy } from '../../../store/findTickets/selectors'
 import { TAppAnyAction } from '../../../store/types'
 import { selectSortBy } from '../../../store/findTickets/actions'
+import SortTabs, { IProps } from './SortTabs'
 
 type TStateProps = Pick<IProps, 'sortBy'>;
 type TDispatchProps = Pick<IProps, 'selectSortBy'>
