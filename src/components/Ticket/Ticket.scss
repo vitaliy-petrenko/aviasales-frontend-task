@@ -40,6 +40,8 @@ $ticket-max-image-height: 36px;
 }
 
 .ticket-company-logo {
+  min-height: $ticket-max-image-height;
+
   img {
     max-height: $ticket-max-image-height;
     max-width: 100%;

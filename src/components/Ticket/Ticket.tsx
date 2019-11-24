@@ -1,50 +1,71 @@
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import moment from 'moment'
+
 import './Ticket.scss'
 import Price from '../ui/common/Price'
 import { useTranslation } from 'react-i18next'
+import { ITicket } from '../../store/findTickets/types'
+import { getImage } from '../../api/ticketApi'
+import { formatFromTo } from '../../helpers/formatters'
+import Duration from '../ui/common/Duration'
 
-const Ticket: React.FC = () => {
-  const [t] = useTranslation()
+interface IProps {
+  ticket: ITicket
+}
+
+const
+  getRangeFromDateAndDuration = (date: string, duration: number): string => formatFromTo([
+    moment(date).format('LT'),
+    moment(date).add(duration, 'minutes').format('LT'),
+  ])
+
+const Ticket: React.FC<IProps> = ({ ticket }) => {
+  const
+    [t] = useTranslation()
 
   return (
     <div className='ticket'>
       <div className='ticket__header'>
         <div className='ticket__row'>
           <div className='ticket__col'>
-            <div className='ticket-price'><Price value={13400}/></div>
+            <div className='ticket-price'><Price value={ticket.price}/></div>
           </div>
           <div className='ticket__col'>
             <div className='ticket-company-logo'>
-              <img src='/test.png' alt=''/>
+              <LazyLoadImage
+                alt=''
+                src={getImage(ticket.carrier)} // use normal <img> attributes as props
+              />
             </div>
           </div>
         </div>
       </div>
       <div className='ticket__body'>
         <div className='ticket-segments'>
-          <div className='ticket__row'>
-            <div className='ticket__col'>
-              <SegmentItem label={'Label'} value={'11:20 - 10:50'}/>
+          {ticket.segments.map(({ id, date, destination, duration, origin, stops }) => (
+            <div className='ticket__row' key={id}>
+              <div className='ticket__col'>
+                <SegmentItem label={formatFromTo([origin, destination])}>
+                  {getRangeFromDateAndDuration(date, duration)}
+                </SegmentItem>
+              </div>
+              <div className='ticket__col'>
+                <SegmentItem label={t('tickets.duration')}>
+                  <Duration duration={duration}/>
+                </SegmentItem>
+              </div>
+              <div className='ticket__col'>
+                {!stops.length ? (
+                  <SegmentItem label={t('findTickets.transfers.labelZero')}/>
+                ) : (
+                  <SegmentItem label={t('findTickets.transfers.label', { count: stops.length })}>
+                    {formatFromTo(stops)}
+                  </SegmentItem>
+                )}
+              </div>
             </div>
-            <div className='ticket__col'>
-              <SegmentItem label={t('tickets.travelTime')} value={'Value'}/>
-            </div>
-            <div className='ticket__col'>
-              <SegmentItem label={t('findTickets.transfers.label', { count: 2 })} value={'Value'}/>
-            </div>
-          </div>
-
-          <div className='ticket__row'>
-            <div className='ticket__col'>
-              <SegmentItem label={'Label'} value={'Value'}/>
-            </div>
-            <div className='ticket__col'>
-              <SegmentItem label={t('tickets.travelTime')} value={'Value'}/>
-            </div>
-            <div className='ticket__col'>
-              <SegmentItem label={t('findTickets.transfers.label', { count: 1 })} value={'Value'}/>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -53,14 +74,12 @@ const Ticket: React.FC = () => {
 
 interface ISegmentProps {
   label: string
-  value?: string
 }
 
-const SegmentItem: React.FC<ISegmentProps> = ({ label, value, children }) => (
+const SegmentItem: React.FC<ISegmentProps> = ({ label, children }) => (
   <div className='ticket-segment-item'>
     <div className='ticket-segment-item__label'>{label}</div>
-    <div className='ticket-segment-item__value'>{value}</div>
-    {children}
+    <div className='ticket-segment-item__value'>{children}</div>
   </div>
 )
 

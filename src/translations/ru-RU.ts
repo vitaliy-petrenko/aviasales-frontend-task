@@ -1,25 +1,36 @@
+import { ETicketsSortBy } from '../store/findTickets/types'
+
 const findTickets = {
   tabs: {
-    byTime: 'Самый дешевый',
-    byPrice: 'Самый быстрый',
+    [ETicketsSortBy.price]: 'Самый дешевый',
+    [ETicketsSortBy.duration]: 'Самый быстрый',
   },
 
   transfers: {
     title: 'Количество пересадок',
     all: 'Все',
-    labelWithout: 'Без пересадок',
+    labelZero: 'Без пересадок',
     label_0: '{{count}} пересадка',
     label_1: '{{count}} пересадки',
     label_2: '{{count}} пересадок',
   },
 }
 
+const labels = {
+  time: {
+    daysShort: 'д',
+    hoursShort: 'ч',
+    minutesShort: 'м',
+  }
+}
+
 const tickets = {
-  travelTime: 'В пути',
+  duration: 'В пути',
   notFound: 'По выбранным критериям нет билетов, попробуйте изменить поиск ✈️'
 }
 
 export default {
   findTickets,
   tickets,
+  labels,
 }

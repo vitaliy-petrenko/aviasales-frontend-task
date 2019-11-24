@@ -1,4 +1,10 @@
-export interface IActionBase<T> {
+import { TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './findTickets/types'
+
+export type TActionWithOnlyType = {
+  type: string
+}
+
+export interface IActionBase<T> extends TActionWithOnlyType {
   type: string
   payload: T
 }
@@ -9,3 +15,10 @@ export interface IPagination {
   offset: number
   limit: number
 }
+
+export type TAppAnyAction =
+  | TActionFetchingStatus
+  | TActionAddTickets
+  | TActionFilterTransfers
+  | TActionSortBy
+  | TActionWithOnlyType

@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next'
 import ruTranslation from '../translations/ru-RU'
 
 class TranslationService {
-  init(language: string) {
+  init(locale: string) {
     i18n
       .use(initReactI18next) // passes i18n down to react-i18next
       .init({
@@ -12,7 +12,7 @@ class TranslationService {
             translation: ruTranslation
           },
         },
-        lng: language,
+        lng: locale,
         fallbackLng: 'ru-RU',
 
         interpolation: {

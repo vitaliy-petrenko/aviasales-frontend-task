@@ -17,17 +17,17 @@
   }
 }
 
-.find-tickets-list {
+.tickets-list {
 
 }
 
-.find-tickets-list__item {
+.tickets-list__item {
   * + & {
     margin-top: $grid-base;
   }
 }
 
-.find-tickets-list__not-found {
+.tickets-list-not-found {
   text-align: center;
   padding: $grid-base;
   max-width: 320px;

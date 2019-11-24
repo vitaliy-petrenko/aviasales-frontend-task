@@ -3,7 +3,7 @@ const config = {
 
   gateWays: {
     searchKey: '/search',
-    tickets: '/tickets'
+    tickets: '/tickets',
   }
 }
 

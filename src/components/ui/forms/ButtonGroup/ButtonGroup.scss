@@ -8,6 +8,10 @@
     flex: 1;
     border-radius: 0;
 
+    &:focus {
+      z-index: 1;
+    }
+
     &:first-child {
       border-radius: $border-radius-base 0 0 $border-radius-base;
     }

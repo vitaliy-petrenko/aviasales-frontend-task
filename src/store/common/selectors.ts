@@ -1,5 +1,5 @@
-import { TCurrency, TLanguage } from './types'
+import { TCurrency, TLocale } from './types'
 import { IState } from '../rootReducer'
 
 export const getCurrency = (state: IState): TCurrency => state.common.currency
-export const getLanguage = (state: IState): TLanguage => state.common.language
+export const getLocale = (state: IState): TLocale => state.common.locale

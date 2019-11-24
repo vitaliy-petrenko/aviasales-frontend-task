@@ -30,11 +30,12 @@
   color: #FFF;
   text-align: center;
 
-  transition: background-color $transitionTime, border-color $transitionTime, opacity $transitionTime;
+  transition: background-color $transitionTime, border-color $transitionTime, opacity $transitionTime, color $transitionTime;
   cursor: pointer;
 
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
 
   @include word-break;
 

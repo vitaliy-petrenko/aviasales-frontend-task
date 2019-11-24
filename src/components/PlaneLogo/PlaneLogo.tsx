@@ -3,10 +3,10 @@ import './PlaneLogo.scss'
 import { motion } from 'framer-motion'
 
 interface IProps {
-  animated: boolean
+  animated?: boolean
 }
 
-const PlaneLogo: React.FC<IProps> = ({ animated }) => {
+const PlaneLogo: React.FC<IProps> = ({ animated = false }) => {
   return (
     <div className='plane-logo'>
       <motion.div
@@ -32,7 +32,7 @@ const PlaneLogo: React.FC<IProps> = ({ animated }) => {
           className='plane-logo__plane'
           animate={
             animated ? {
-              scale: [1, .9, .9, 1], rotate: [0, -1, 0, -1, 0], x: [0, -1, 0, 1, 0], y: [0, 1, 0, -1, 0]
+              scale: [1, .8, .8, 1], rotate: [0, -1, 0, -1, 0], x: [0, -1, 0, 1, 0], y: [0, 1, 0, -1, 0]
             } : {
               scale: 1, rotate: 0, x: 0, y: 0
             }

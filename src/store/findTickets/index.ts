@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import { pagination, sortBy, statuses, tickets, transfers } from './reducers'
+import { pagination, sortBy, fetchingStatuses, tickets, transfers } from './reducers'
 
 
 export default combineReducers({
   tickets,
-  statuses,
+  fetchingStatuses,
   sortBy,
   pagination,
   filters: combineReducers({ transfers }),

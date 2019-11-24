@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import './styles/index.scss'
 import App from './App'
 import store from './store'
-import { fetchTickets } from './api/tickets'
 import init from './store/initialize'
 
 const
@@ -15,9 +14,6 @@ const
       </Provider>,
       document.getElementById('root'))
   }
-
-fetchTickets()
-  .catch(console.warn)
 
 init(store.getState())
 store.subscribe(render)

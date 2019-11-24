@@ -1,4 +1,4 @@
-import { ICommonState, TCurrency, TLanguage } from './types'
+import { ICommonState, TCurrency, TLocale } from './types'
 
 const CURRENCIES = {
   RUB: {
@@ -13,7 +13,7 @@ const CURRENCIES = {
 
 const INITIAL_STATE: ICommonState = {
   currency: CURRENCIES.RUB,
-  language: 'ru-RU',
+  locale: 'ru-RU',
 }
 
 export const currency =
@@ -21,7 +21,7 @@ export const currency =
     return state
   }
 
-export const language =
-  (state: TLanguage = INITIAL_STATE.language): TLanguage => {
+export const locale =
+  (state: TLocale = INITIAL_STATE.locale): TLocale => {
     return state
   }

@@ -1,9 +1,6 @@
 import config from './config'
 import { fetchJSON } from '../helpers/fetch'
-import { ITicket } from '../store/findTickets/types'
-import { v4 } from 'uuid'
-
-type TRawTicket = Omit<ITicket, 'id'>
+import { normalizeTicket } from '../normalizers/ticketNormalizers'
 
 const
   KEY_PATH = config.base + config.gateWays.searchKey,
@@ -14,30 +11,28 @@ const
     const { searchId } = await fetchJSON(KEY_PATH)
 
     return searchId
-  },
-  normalizeTicket = (ticket: TRawTicket): ITicket => ({
-    id: v4(),
-    ...ticket,
-  })
+  }
 
 export const fetchTickets = async () => {
   const
     searchId = await fetchTicketsSearchId(),
-    tickets: ITicket[] = [],
+    tickets = [],
     path = `${TICKETS_PATH}?searchId=${searchId}`
 
   let stop = false
 
   while (!stop) try {
-    const result = await fetchJSON(path)
+    const
+      result = await fetchJSON(path),
+      rawTickets = result.tickets
 
+    tickets.push(...rawTickets.map(normalizeTicket))
     stop = result.stop
-
-    tickets.push(...result.tickets.map(normalizeTicket))
-
   } catch (error) {
     console.warn(error)
   }
 
   return tickets
 }
+
+export const getImage = (carrierCode: string) => `//pics.avs.io/99/36/${carrierCode}.png`

@@ -33,7 +33,7 @@ html {
   animation-name: placeHolderShimmer;
   animation-timing-function: linear;
   background: var(--color-general-background);
-  background: linear-gradient(to right, var(--color-general-background) 8%, transparent 18%, var(--color-general-background) 33%);
+  background: linear-gradient(to right, var(--color-general-background) 8%, var(--color-panel-background) 18%, var(--color-general-background) 33%);
   background-size: 800px 104px;
   position: relative;
 }

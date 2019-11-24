@@ -1,4 +1,4 @@
-export type TLanguage = string
+export type TLocale = string
 export type TCurrency = {
   name: string
   symbol: string
@@ -6,5 +6,5 @@ export type TCurrency = {
 
 export interface ICommonState {
   currency: TCurrency
-  language: TLanguage
+  locale: TLocale
 }

@@ -1,63 +1,40 @@
-import React, { useState } from 'react'
-
+import React from 'react'
 import Checkbox from '../../../components/ui/forms/Checkbox'
 import FiltersSection from '../../../components/ui/forms/FiltersSection'
 import { useTranslation } from 'react-i18next'
+import { ITicketFilters, TActionFilterTransfersToggleOption } from '../../../store/findTickets/types'
+import { orderedArray } from '../../../helpers/misc'
 
-const Sidebar: React.FC = () => {
+export interface IProps {
+  toggleTransfersOption: (count: number) => TActionFilterTransfersToggleOption,
+  filters: ITicketFilters
+}
+
+const Sidebar: React.FC<IProps> = ({ toggleTransfersOption, filters }) => {
   const
-    [checked, setChecked] = useState(false),
-    [t] = useTranslation()
+    [t] = useTranslation(),
+    { options, maxTransfersCount } = filters.transfers
 
   return (
     <FiltersSection title='Количество пересадок'>
-      <Checkbox checked={checked} onChange={(value) => {
-        setChecked((value))
-      }}>
+      <Checkbox
+        checked={maxTransfersCount === options.length}
+        onChange={() => toggleTransfersOption(-1)}
+      >
         {t('findTickets.transfers.all')}
       </Checkbox>
 
-      <Checkbox tabIndex={-1} checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.labelWithout')}
-      </Checkbox>
-
-      <Checkbox checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.label', { count: 1 })}
-      </Checkbox>
-
-      <Checkbox checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.label', { count: 2 })}
-      </Checkbox>
-
-      <Checkbox checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.label', { count: 3 })}
-      </Checkbox>
-
-      <Checkbox checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.label', { count: 4 })}
-      </Checkbox>
-
-      <Checkbox checked={checked} onChange={(value) => {
-        console.log(value)
-        setChecked((value))
-      }}>
-        {t('findTickets.transfers.label', { count: 5 })}
-      </Checkbox>
+      {
+        orderedArray(maxTransfersCount).map(count => (
+          <Checkbox
+            key={count}
+            checked={options.includes(count)}
+            onChange={() => toggleTransfersOption(count)}
+          >
+            {t(`findTickets.transfers.label${count === 0 ? 'Zero' : ''}`, { count })}
+          </Checkbox>
+        ))
+      }
     </FiltersSection>
   )
 }

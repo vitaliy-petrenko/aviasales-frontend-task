@@ -16,7 +16,7 @@ interface IProps extends ButtonClassProps {
   a?: boolean
   href?: string
   target?: string
-  onClick?: (e: React.MouseEvent) => void
+  onClick?: (e: React.MouseEvent) => any
 }
 
 const BASE_CLASS_NAME = 'btn'

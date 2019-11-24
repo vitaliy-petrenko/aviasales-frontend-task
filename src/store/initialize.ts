@@ -1,13 +1,16 @@
 import { IState } from './rootReducer'
-import TranslationService from '../services/translation'
-import { getLanguage } from './common/selectors'
+import translationService from '../services/translation'
+import momentService from '../services/moment'
+import { getLocale } from './common/selectors'
 
-const initLanguage = (state: IState) => {
-  TranslationService.init(getLanguage(state))
+const initLocale = (state: IState) => {
+  const locale = getLocale(state)
+  translationService.init(getLocale(state))
+  momentService.setLocale(locale)
 }
 
 const init = (state: IState) => {
-  initLanguage(state)
+  initLocale(state)
 }
 
 export default init
