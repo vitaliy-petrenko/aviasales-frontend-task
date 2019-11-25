@@ -62,9 +62,7 @@ export const sortBy = createReducer(INITIAL_STATE.sortBy, {
   [selectSortBy.type]: (state, action) => {
     return action.payload
   },
-  [clearFindTickets.type]: (state, action) => ({
-    ...INITIAL_STATE.statuses
-  })
+  [clearFindTickets.type]: () => INITIAL_STATE.sortBy
 })
 
 export const tickets = createReducer(INITIAL_STATE.tickets, {
