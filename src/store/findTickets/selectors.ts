@@ -10,7 +10,7 @@ export const getPagination = (state: IState): IPagination => state.findTickets.p
 export const getAllTicketsList = (state: IState): ITicket[] => state.findTickets.tickets
 
 /** reselect */
-export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSortBy, ITicket[]>(
+export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSortByState, ITicket[]>(
   getAllTicketsList,
   getSortBy,
   (tickets, sortBy) => {

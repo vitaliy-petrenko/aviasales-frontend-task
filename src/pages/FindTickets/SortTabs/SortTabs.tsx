@@ -5,8 +5,8 @@ import ButtonGroup from '../../../components/ui/forms/ButtonGroup'
 import { ETicketsSortBy } from '../../../store/findTickets/reducers'
 
 export interface IProps {
-  sortBy: TTicketsSortBy,
-  selectSortBy: (count: TTicketsSortBy) => TActionSortBy
+  sortBy: TTicketsSortByState,
+  selectSortBy: (count: TTicketsSortByState) => TActionSortBy
 }
 
 const sortByVariants = [ETicketsSortBy.price, ETicketsSortBy.duration]

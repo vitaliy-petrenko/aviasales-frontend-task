@@ -41,17 +41,18 @@ interface ITicketFiltersState {
 interface IFindTicketsState {
   tickets: ITicket[]
   statuses: IFetchingStatuses
-  sortBy: TTicketsSortBy
+  sortBy: TTicketsSortByState
   filters: ITicketFiltersState
   pagination: IPagination
 }
+
+type TTicketsSortByState = number
 
 /** tickets section */
 type TActionAddTickets = IActionBase<ITicket[]>
 
 /** sort section */
-type TActionSortBy = IActionBase<TTicketsSortBy>
+type TActionSortBy = IActionBase<TTicketsSortByState>
 
 /** filters section */
 type TActionFilterTransfers = IActionBase<number[]>
-type TTicketsSortBy = number

@@ -36,7 +36,7 @@ export const clearFindTickets = createAction(ACTION_TYPES.FIND_TICKETS.CLEAR)
 
 export const selectSortBy = createAction(
   ACTION_TYPES.FIND_TICKETS.SORT_BY,
-  (sortBy: TTicketsSortBy) => ({
+  (sortBy: TTicketsSortByState) => ({
     payload: sortBy,
   })
 )
