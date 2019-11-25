@@ -1,8 +1,9 @@
 const FIND_TICKETS_TYPES = {
+  CLEAR: 'FIND_TICKETS.TICKETS.CLEAR',
+
   /** tickets */
   TICKETS: {
     ADD: 'FIND_TICKETS.TICKETS.ADD',
-    CLEAR: 'FIND_TICKETS.TICKETS.CLEAR'
   },
 
   /** statuses */

@@ -46,16 +46,28 @@ export const transfers = (state = INITIAL_STATE.filters.transfers, { type, paylo
       }
     }
 
+    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
+      return INITIAL_STATE.filters.transfers
+    }
+
     default:
       return state
   }
 }
 
 export const sortBy = (state = INITIAL_STATE.sortBy, { type, payload }: TActionSortBy) => {
-  if (type === ACTION_TYPES.FIND_TICKETS.SORT_BY) {
-    return payload
-  } else {
-    return state
+  switch (type) {
+    case ACTION_TYPES.FIND_TICKETS.SORT_BY: {
+      return payload
+    }
+
+    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
+      return INITIAL_STATE.sortBy
+    }
+
+    default: {
+      return state
+    }
   }
 }
 
@@ -65,7 +77,7 @@ export const tickets = (state = INITIAL_STATE.tickets, { type, payload }: TActio
       return [...state, ...payload]
     }
 
-    case ACTION_TYPES.FIND_TICKETS.TICKETS.CLEAR: {
+    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
       return INITIAL_STATE.tickets
     }
 
@@ -89,6 +101,11 @@ export const statuses = (state = INITIAL_STATE.statuses, { type, payload }: TAct
         isError: payload,
       }
     }
+
+    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
+      return INITIAL_STATE.statuses
+    }
+
 
     default:
       return state

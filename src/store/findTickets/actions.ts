@@ -20,8 +20,8 @@ const addTickets = (tickets: ITicket[]): TActionAddTickets => ({
   payload: tickets,
 })
 
-export const clearTickets = (): TActionWithOnlyType => ({
-  type: ACTION_TYPES.FIND_TICKETS.TICKETS.CLEAR
+export const clearFindTickets = (): TActionWithOnlyType => ({
+  type: ACTION_TYPES.FIND_TICKETS.CLEAR
 })
 
 export const selectSortBy = (sortBy: ETicketsSortBy): TActionSortBy => ({
