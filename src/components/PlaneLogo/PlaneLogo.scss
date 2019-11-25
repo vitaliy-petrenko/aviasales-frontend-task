@@ -1,31 +1,5 @@
 @import '../../styles/abstract/mixins';
 
-@keyframes plane-loading {
-  $scale: .8;
-  $initialTransform: translate3d(0, 0, 0) scale($scale);
-  $deltaY: 2px;
-
-  from {
-    transform: $initialTransform;
-  }
-
-  20% {
-    transform: translate3d(0, -$deltaY, 0) scale($scale) rotate(5deg);
-  }
-
-  50% {
-    transform: $initialTransform rotate(10deg);
-  }
-
-  70% {
-    transform: translate3d(0, $deltaY, 0) scale($scale) rotate(5deg);
-  }
-
-  to {
-    transform: $initialTransform;
-  }
-}
-
 @keyframes earth-spin {
   from {
     transform: translate3d(0, 0, 0) rotate(0)
@@ -44,17 +18,6 @@
   border-radius: 50%;
   box-shadow: 0 8px 11px rgba(55, 104, 142, 0.25);
   background: var(--color-primary);
-
-  &.is-loading {
-
-    .plane-logo__earth {
-      animation: earth-spin 10s linear infinite;
-    }
-
-    .plane-logo__plane {
-      animation: plane-loading 2s linear infinite;
-    }
-  }
 }
 
 .plane-logo__plane-wrap {

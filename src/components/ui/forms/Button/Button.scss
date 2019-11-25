@@ -36,6 +36,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
+  font-family: $font-family-base;
 
   @include word-break;
 
@@ -82,11 +83,12 @@
 }
 
 .btn--lg {
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 14px 32px;
 }
 
 .btn--block {
   display: block;
   width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
 }

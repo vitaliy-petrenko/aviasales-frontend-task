@@ -5,6 +5,7 @@ import './styles/index.scss'
 import App from './App'
 import store from './store'
 import init from './store/initialize'
+import * as serviceWorker from './serviceWorker'
 
 const
   render = () => {
@@ -19,3 +20,5 @@ init(store.getState())
 store.subscribe(render)
 
 render()
+
+serviceWorker.unregister()

@@ -8,7 +8,7 @@ html {
   background: var(--color-general-background);
   color: var(--color-text-base);
   @include font-size-base;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family-base;
   margin-left: calc(100vw - 100%);
 }
 

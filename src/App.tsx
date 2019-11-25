@@ -1,5 +1,5 @@
 import React from 'react'
-import NotFound from './pages/NotFound'
+import DoNotTouchThis from './pages/DoNotTouchThis'
 import FindTickets from './pages/FindTickets'
 
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
@@ -13,11 +13,11 @@ const App: React.FC = () => (
       <Route exact path='/find-tickets'>
         <FindTickets/>
       </Route>
-      <Route exact path='/not-found'>
-        <NotFound/>
+      <Route exact path='/o-privet'>
+        <DoNotTouchThis/>
       </Route>
       <Route path='*'>
-        <Redirect to='/not-found'/>
+        <Redirect to='/o-privet'/>
       </Route>
     </Switch>
   </Router>
