@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/aviasales-frontend-task/static/css/main.6bdf5daa.chunk.css",
-    "main.js": "/aviasales-frontend-task/static/js/main.fcf0f7b8.chunk.js",
-    "main.js.map": "/aviasales-frontend-task/static/js/main.fcf0f7b8.chunk.js.map",
+    "main.js": "/aviasales-frontend-task/static/js/main.c933d294.chunk.js",
+    "main.js.map": "/aviasales-frontend-task/static/js/main.c933d294.chunk.js.map",
     "runtime-main.js": "/aviasales-frontend-task/static/js/runtime-main.e7ebc386.js",
     "runtime-main.js.map": "/aviasales-frontend-task/static/js/runtime-main.e7ebc386.js.map",
     "static/js/2.ed39f125.chunk.js": "/aviasales-frontend-task/static/js/2.ed39f125.chunk.js",
     "static/js/2.ed39f125.chunk.js.map": "/aviasales-frontend-task/static/js/2.ed39f125.chunk.js.map",
     "index.html": "/aviasales-frontend-task/index.html",
-    "precache-manifest.a80801d417fece6e437a8c0396056caa.js": "/aviasales-frontend-task/precache-manifest.a80801d417fece6e437a8c0396056caa.js",
+    "precache-manifest.5114f658a94092070fe2cc4f5e324b55.js": "/aviasales-frontend-task/precache-manifest.5114f658a94092070fe2cc4f5e324b55.js",
     "service-worker.js": "/aviasales-frontend-task/service-worker.js",
     "static/css/main.6bdf5daa.chunk.css.map": "/aviasales-frontend-task/static/css/main.6bdf5daa.chunk.css.map",
     "static/media/check.b73f59a3.svg": "/aviasales-frontend-task/static/media/check.b73f59a3.svg",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.e7ebc386.js",
     "static/js/2.ed39f125.chunk.js",
     "static/css/main.6bdf5daa.chunk.css",
-    "static/js/main.fcf0f7b8.chunk.js"
+    "static/js/main.c933d294.chunk.js"
   ]
 }
