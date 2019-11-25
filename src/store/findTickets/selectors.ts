@@ -32,7 +32,13 @@ export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketF
   getTicketsListSorted,
   getFilters,
   (tickets, { transfers }) => {
-    const getTransfersCounts = (ticket: ITicket): number[] => ticket.segments.map(({ stops }) => stops.length)
+    const
+      getTransfersCounts = (ticket: ITicket): number[] => ticket.segments.map(({ stops }) => stops.length),
+      isAllSelected = transfers.selected.length === transfers.available.length,
+      isNothingSelected = transfers.selected.length
+
+    if (isAllSelected) return tickets
+    if (isNothingSelected) return []
 
     return tickets.filter(ticket => {
       const allStops = getTransfersCounts(ticket)
