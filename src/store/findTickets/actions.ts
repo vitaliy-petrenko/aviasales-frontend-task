@@ -1,41 +1,52 @@
 import { Dispatch } from 'react'
+import { createAction } from '@reduxjs/toolkit'
 import { fetchTickets as apiFetchTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { orderedArray } from '../../helpers/misc'
 
-const setFetchingStatus = (status: boolean): TActionFetchingStatus => ({
-  type: ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
-  payload: status,
-})
+export const setFetchingLoadingStatus = createAction(
+  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
+  (status: boolean) => ({
+    payload: status,
+  })
+)
 
-const setFetchingErrorStatus = (status: boolean): TActionFetchingStatus => ({
-  type: ACTION_TYPES.FIND_TICKETS.STATUSES.IS_ERROR,
-  payload: status,
-})
+export const setFetchingErrorStatus = createAction(
+  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_ERROR,
+  (status: boolean) => ({
+    payload: status,
+  })
+)
 
-const addTickets = (tickets: ITicket[]): TActionAddTickets => ({
-  type: ACTION_TYPES.FIND_TICKETS.TICKETS.ADD,
-  payload: tickets,
-})
+export const addTickets = createAction(
+  ACTION_TYPES.FIND_TICKETS.TICKETS.ADD,
+  (tickets: ITicket[]) => ({
+    payload: tickets,
+  })
+)
 
-export const clearFindTickets = (): TActionWithOnlyType => ({
-  type: ACTION_TYPES.FIND_TICKETS.CLEAR
-})
+export const clearFindTickets = createAction(ACTION_TYPES.FIND_TICKETS.CLEAR)
 
-export const selectSortBy = (sortBy: TTicketsSortBy): TActionSortBy => ({
-  type: ACTION_TYPES.FIND_TICKETS.SORT_BY,
-  payload: sortBy,
-})
+export const selectSortBy = createAction(
+  ACTION_TYPES.FIND_TICKETS.SORT_BY,
+  (sortBy: TTicketsSortBy) => ({
+    payload: sortBy,
+  })
+)
 
-export const setAvailableTransfersOptions = (options: number[]): TActionFilterTransfers => ({
-  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS,
-  payload: options,
-})
+export const setAvailableTransfersOptions = createAction(
+  ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS,
+  (options: number[]) => ({
+    payload: options,
+  })
+)
 
-export const setSelectedTransfersOptions = (options: number[]): TActionFilterTransfers => ({
-  type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS,
-  payload: options
-})
+export const setSelectedTransfersOptions = createAction(
+  ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS,
+  (options: number[]) => ({
+    payload: options
+  })
+)
 
 const getAvailableOptions = (tickets: ITicket[]): number[] => {
   let count = 0
@@ -47,7 +58,7 @@ const getAvailableOptions = (tickets: ITicket[]): number[] => {
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   dispatch(setFetchingErrorStatus(false))
-  dispatch(setFetchingStatus(true))
+  dispatch(setFetchingLoadingStatus(true))
 
   apiFetchTickets()
     .then(
@@ -59,6 +70,6 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
       dispatch(setFetchingErrorStatus(true))
     })
     .finally(() => {
-      dispatch(setFetchingStatus(false))
+      dispatch(setFetchingLoadingStatus(false))
     })
 }

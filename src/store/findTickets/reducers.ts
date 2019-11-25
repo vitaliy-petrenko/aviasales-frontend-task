@@ -1,5 +1,13 @@
-import ACTION_TYPES from '../actionTypes'
+import { createReducer } from '@reduxjs/toolkit'
 import { orderedArray } from '../../helpers/misc'
+import {
+  addTickets,
+  clearFindTickets,
+  selectSortBy,
+  setAvailableTransfersOptions,
+  setFetchingLoadingStatus,
+  setSelectedTransfersOptions
+} from './actions'
 
 export enum ETicketsSortBy {price, duration}
 
@@ -26,92 +34,59 @@ const INITIAL_STATE: IFindTicketsState = {
   },
 }
 
-export const transfers = (state = INITIAL_STATE.filters.transfers, { type, payload }: TActionFilterTransfers) => {
-  switch (type) {
-    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS: {
-      return {
-        ...state,
-        selected: payload,
-      }
+export const transfers = createReducer(INITIAL_STATE.filters.transfers, {
+  [setSelectedTransfersOptions.type]: (state, action) => ({
+    ...state,
+    selected: action.payload,
+  }),
+
+  [setAvailableTransfersOptions.type]: (state, action) => {
+    const
+      { selected, available } = state,
+      isAllOptionsSelected = selected.length === available.length
+
+    return {
+      selected: isAllOptionsSelected ? [...action.payload] : selected,
+      available: action.payload,
     }
+  },
 
-    case ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS: {
-      const
-        { selected, available } = state,
-        isAllOptionsSelected = selected.length === available.length
+  [clearFindTickets.type]: () => ({
+    ...INITIAL_STATE.filters.transfers
+  })
+})
 
-      return {
-        selected: isAllOptionsSelected ? [...payload] : selected,
-        available: payload,
-      }
-    }
+export const sortBy = createReducer(INITIAL_STATE.sortBy, {
+  [selectSortBy.type]: (state, action) => {
+    return action.payload
+  },
+  [clearFindTickets.type]: (state, action) => ({
+    ...INITIAL_STATE.statuses
+  })
+})
 
-    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
-      return INITIAL_STATE.filters.transfers
-    }
+export const tickets = createReducer(INITIAL_STATE.tickets, {
+  [addTickets.type]: (state, action) => [...state, ...action.payload],
 
-    default:
-      return state
-  }
-}
+  [clearFindTickets.type]: (state, action) => [...INITIAL_STATE.tickets]
+})
 
-export const sortBy = (state = INITIAL_STATE.sortBy, { type, payload }: TActionSortBy) => {
-  switch (type) {
-    case ACTION_TYPES.FIND_TICKETS.SORT_BY: {
-      return payload
-    }
+export const statuses = createReducer(INITIAL_STATE.statuses, {
+  [setFetchingLoadingStatus.type]: (state, action) => ({
+    ...state,
+    isError: action.payload,
+  }),
+  [setFetchingLoadingStatus.type]: (state, action) => ({
+    ...state,
+    isFetching: action.payload,
+  }),
+  [clearFindTickets.type]: () => ({
+    ...INITIAL_STATE.statuses
+  })
+})
 
-    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
-      return INITIAL_STATE.sortBy
-    }
-
-    default: {
-      return state
-    }
-  }
-}
-
-export const tickets = (state = INITIAL_STATE.tickets, { type, payload }: TActionAddTickets) => {
-  switch (type) {
-    case ACTION_TYPES.FIND_TICKETS.TICKETS.ADD: {
-      return [...state, ...payload]
-    }
-
-    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
-      return INITIAL_STATE.tickets
-    }
-
-    default:
-      return state
-  }
-}
-
-export const statuses = (state = INITIAL_STATE.statuses, { type, payload }: TActionFetchingStatus) => {
-  switch (type) {
-    case ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING: {
-      return {
-        ...state,
-        isFetching: payload,
-      }
-    }
-
-    case ACTION_TYPES.FIND_TICKETS.STATUSES.IS_ERROR: {
-      return {
-        ...state,
-        isError: payload,
-      }
-    }
-
-    case ACTION_TYPES.FIND_TICKETS.CLEAR: {
-      return INITIAL_STATE.statuses
-    }
-
-
-    default:
-      return state
-  }
-}
-
-export const pagination = (state = INITIAL_STATE.pagination): IPagination => {
-  return state
-}
+export const pagination = createReducer(INITIAL_STATE.pagination, {
+  [clearFindTickets.type]: () => ({
+    ...INITIAL_STATE.pagination
+  })
+})

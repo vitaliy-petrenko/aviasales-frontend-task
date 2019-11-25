@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from '@reduxjs/toolkit'
 import { sortBy as _sortBy } from 'lodash'
 import { IState } from '../rootReducer'
 import { ETicketsSortBy } from './reducers'

@@ -54,5 +54,4 @@ type TActionSortBy = IActionBase<TTicketsSortBy>
 
 /** filters section */
 type TActionFilterTransfers = IActionBase<number[]>
-
 type TTicketsSortBy = number
