@@ -29,12 +29,12 @@ export const selectSortBy = (sortBy: ETicketsSortBy): TActionSortBy => ({
   payload: sortBy,
 })
 
-export const setAvailableOptions = (options: number[]): TActionFilterTransfers => ({
+export const setAvailableTransfersOptions = (options: number[]): TActionFilterTransfers => ({
   type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS,
   payload: options,
 })
 
-export const setSelectedOptions = (options: number[]): TActionFilterTransfers => ({
+export const setSelectedTransfersOptions = (options: number[]): TActionFilterTransfers => ({
   type: ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS,
   payload: options
 })
@@ -44,7 +44,7 @@ const getAvailableOptions = (tickets: ITicket[]): number[] => {
 
   tickets.forEach(ticket => ticket.segments.forEach(({ stops }) => count = Math.max(count, stops.length)))
 
-  return orderedArray(count)
+  return orderedArray(count + 1)
 }
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
@@ -55,7 +55,7 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
     .then(
       tickets => {
         dispatch(addTickets(tickets))
-        dispatch(setAvailableOptions(getAvailableOptions(tickets)))
+        dispatch(setAvailableTransfersOptions(getAvailableOptions(tickets)))
       })
     .catch(() => {
       dispatch(setFetchingErrorStatus(true))

@@ -6,11 +6,11 @@ import { ITicketFilters, TActionFilterTransfers } from '../../../store/findTicke
 import { toggleInArray } from '../../../helpers/misc'
 
 export interface IProps {
-  setSelectedOptions: (options: number[]) => TActionFilterTransfers,
+  setSelectedTransfersOptions: (options: number[]) => TActionFilterTransfers,
   filters: ITicketFilters
 }
 
-const Sidebar: React.FC<IProps> = ({ setSelectedOptions, filters }) => {
+const Sidebar: React.FC<IProps> = ({ setSelectedTransfersOptions, filters }) => {
   const
     [t] = useTranslation(),
     { selected, available } = filters.transfers,
@@ -18,14 +18,14 @@ const Sidebar: React.FC<IProps> = ({ setSelectedOptions, filters }) => {
 
     onToggleAll = () => {
       if (selected.length && isAllSelected) {
-        setSelectedOptions([])
+        setSelectedTransfersOptions([])
       } else {
-        setSelectedOptions([...available])
+        setSelectedTransfersOptions([...available])
       }
     },
 
     onToggle = (option: number) => {
-      setSelectedOptions(toggleInArray(selected, option))
+      setSelectedTransfersOptions(toggleInArray(selected, option))
     }
 
   return (
