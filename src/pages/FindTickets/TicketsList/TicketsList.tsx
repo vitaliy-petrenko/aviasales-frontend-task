@@ -2,8 +2,6 @@ import React from 'react'
 import Ticket, { TicketLoading } from '../../../components/Ticket/Ticket'
 import FadeIn from '../../../components/ui/common/FadeIn'
 import { useTranslation } from 'react-i18next'
-import { ITicket } from '../../../store/findTickets/types'
-import { IFetchingStatuses } from '../../../store/types'
 
 export interface IProps {
   statuses: IFetchingStatuses,

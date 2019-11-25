@@ -1,8 +1,6 @@
 import { Dispatch } from 'react'
 import { fetchTickets as apiFetchTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
-import { TActionFetchingStatus, TActionWithOnlyType, TAppAnyAction } from '../types'
-import { ETicketsSortBy, ITicket, TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './types'
 import { orderedArray } from '../../helpers/misc'
 
 const setFetchingStatus = (status: boolean): TActionFetchingStatus => ({
@@ -24,7 +22,7 @@ export const clearFindTickets = (): TActionWithOnlyType => ({
   type: ACTION_TYPES.FIND_TICKETS.CLEAR
 })
 
-export const selectSortBy = (sortBy: ETicketsSortBy): TActionSortBy => ({
+export const selectSortBy = (sortBy: TTicketsSortBy): TActionSortBy => ({
   type: ACTION_TYPES.FIND_TICKETS.SORT_BY,
   payload: sortBy,
 })

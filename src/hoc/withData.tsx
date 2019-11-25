@@ -1,5 +1,4 @@
 import React from 'react'
-import { IFetchingStatuses } from '../store/types'
 import Error from '../components/ui/common/Error'
 import Button from '../components/ui/forms/Button'
 import { useTranslation } from 'react-i18next'

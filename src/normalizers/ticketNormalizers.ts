@@ -1,5 +1,3 @@
-import { IRawTicket, IRawTicketSegment } from '../api/types'
-import { ITicket, ITicketSegment } from '../store/findTickets/types'
 import { v4 } from 'uuid'
 
 export const normalizeTicket = (ticket: IRawTicket): ITicket => {

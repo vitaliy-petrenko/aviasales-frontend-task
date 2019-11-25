@@ -1,5 +1,4 @@
 import React from 'react'
-import { TCurrency } from '../../../../store/common/types'
 
 export interface IProps {
   value: number

@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect'
 import { sortBy as _sortBy } from 'lodash'
 import { IState } from '../rootReducer'
-import { ETicketsSortBy, ITicket, ITicketFilters, ITicketSegment } from './types'
-import { IFetchingStatuses, IPagination } from '../types'
+import { ETicketsSortBy } from './reducers'
 
 /** simple selectors */
 export const getFetchingStatuses = (state: IState): IFetchingStatuses => state.findTickets.statuses
@@ -12,7 +11,7 @@ export const getPagination = (state: IState): IPagination => state.findTickets.p
 export const getAllTicketsList = (state: IState): ITicket[] => state.findTickets.tickets
 
 /** reselect */
-export const getTicketsListSorted = createSelector<IState, ITicket[], ETicketsSortBy, ITicket[]>(
+export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSortBy, ITicket[]>(
   getAllTicketsList,
   getSortBy,
   (tickets, sortBy) => {

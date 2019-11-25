@@ -2,7 +2,6 @@ import React from 'react'
 import Checkbox from '../../../components/ui/forms/Checkbox'
 import FiltersSection from '../../../components/ui/forms/FiltersSection'
 import { useTranslation } from 'react-i18next'
-import { ITicketFilters, TActionFilterTransfers } from '../../../store/findTickets/types'
 import { toggleInArray } from '../../../helpers/misc'
 
 export interface IProps {

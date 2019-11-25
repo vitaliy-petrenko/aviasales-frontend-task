@@ -1,4 +1,4 @@
-import { ETicketsSortBy } from '../store/findTickets/types'
+import { ETicketsSortBy } from '../store/findTickets/reducers'
 
 const findTickets = {
   tabs: {

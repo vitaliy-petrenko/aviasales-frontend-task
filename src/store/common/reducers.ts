@@ -1,5 +1,3 @@
-import { ICommonState, TCurrency, TLocale } from './types'
-
 const CURRENCIES = {
   RUB: {
     name: 'RUB',

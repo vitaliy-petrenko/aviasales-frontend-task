@@ -1,7 +1,7 @@
-import { ETicketsSortBy, IFindTicketsState, TActionAddTickets, TActionFilterTransfers, TActionSortBy } from './types'
 import ACTION_TYPES from '../actionTypes'
-import { IPagination, TActionFetchingStatus } from '../types'
 import { orderedArray } from '../../helpers/misc'
+
+export enum ETicketsSortBy {price, duration}
 
 const INITIAL_STATE: IFindTicketsState = {
   statuses: {

@@ -2,11 +2,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from '../../../components/ui/forms/Button'
 import ButtonGroup from '../../../components/ui/forms/ButtonGroup'
-import { ETicketsSortBy, TActionSortBy } from '../../../store/findTickets/types'
+import { ETicketsSortBy } from '../../../store/findTickets/reducers'
 
 export interface IProps {
-  sortBy: ETicketsSortBy,
-  selectSortBy: (count: ETicketsSortBy) => TActionSortBy
+  sortBy: TTicketsSortBy,
+  selectSortBy: (count: TTicketsSortBy) => TActionSortBy
 }
 
 const sortByVariants = [ETicketsSortBy.price, ETicketsSortBy.duration]

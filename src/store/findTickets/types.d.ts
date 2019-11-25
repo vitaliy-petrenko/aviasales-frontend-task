@@ -1,6 +1,4 @@
-import { IActionBase, IFetchingStatuses, IPagination } from '../types'
-
-export interface IBaseTicketSegment {
+interface IBaseTicketSegment {
   // Код города (iata)
   origin: string
   // Код города (iata)
@@ -13,7 +11,7 @@ export interface IBaseTicketSegment {
   duration: number
 }
 
-export interface IBaseTicket<S> {
+interface IBaseTicket<S> {
   // Цена в рублях
   price: number
   // Код авиакомпании (iata)
@@ -23,39 +21,38 @@ export interface IBaseTicket<S> {
   segments: S[]
 }
 
-export interface ITicketSegment extends IBaseTicketSegment {
+interface ITicketSegment extends IBaseTicketSegment {
   id: string
 }
 
-export interface ITicket extends IBaseTicket<ITicketSegment> {
+interface ITicket extends IBaseTicket<ITicketSegment> {
   id: string
 }
 
-export interface ITicketFiltersTransfer {
+interface ITicketFiltersTransfer {
   available: number[]
   selected: number[]
 }
 
-export interface ITicketFilters {
+interface ITicketFilters {
   transfers: ITicketFiltersTransfer
 }
 
-export enum ETicketsSortBy {price, duration}
-
-export interface IFindTicketsState {
+interface IFindTicketsState {
   tickets: ITicket[]
   statuses: IFetchingStatuses
-  sortBy: ETicketsSortBy
+  sortBy: TTicketsSortBy
   filters: ITicketFilters
   pagination: IPagination
 }
 
 /** tickets section */
-export type TActionAddTickets = IActionBase<ITicket[]>
+type TActionAddTickets = IActionBase<ITicket[]>
 
 /** sort section */
-export type TActionSortBy = IActionBase<ETicketsSortBy>
+type TActionSortBy = IActionBase<TTicketsSortBy>
 
 /** filters section */
-export type TActionFilterTransfers = IActionBase<number[]>
+type TActionFilterTransfers = IActionBase<number[]>
 
+type TTicketsSortBy = number
