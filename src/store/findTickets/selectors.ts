@@ -35,8 +35,9 @@ export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketF
     const
       getTransfersCounts = (ticket: ITicket): number[] => ticket.segments.map(({ stops }) => stops.length),
       isAllSelected = transfers.selected.length === transfers.available.length,
-      isNothingSelected = transfers.selected.length
+      isNothingSelected = !transfers.selected.length
 
+    console.log(isAllSelected, isNothingSelected)
     if (isAllSelected) return tickets
     if (isNothingSelected) return []
 
