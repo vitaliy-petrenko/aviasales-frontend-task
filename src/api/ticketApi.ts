@@ -13,31 +13,39 @@ const
     return searchId
   }
 
+const withInterval = (fn: () => boolean, delay: number) => {
+  const run = () => {
+    setTimeout(() => {
+      const result = fn()
+
+      if (!result) {
+        run()
+      }
+    }, delay)
+  }
+
+  run()
+}
+
 export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
   let
-    interval: number,
     stop = false,
     rawTickets: IRawTicket[] = []
 
   const
-    processInterval = 400,
     searchId = await fetchTicketsSearchId(),
-    path = `${TICKETS_PATH}?searchId=${searchId}`,
+    path = `${TICKETS_PATH}?searchId=${searchId}`
 
-    runProcess = () => {
-      if (rawTickets.length) {
-        const normalized = rawTickets.map(normalizeTicket)
+  withInterval(() => {
+    if (rawTickets.length) {
+      const normalized = rawTickets.map(normalizeTicket)
 
-        process(normalized)
-        rawTickets = []
-      }
-
-      if (stop) {
-        clearInterval(interval)
-      }
+      process(normalized)
+      rawTickets = []
     }
 
-  interval = setInterval(runProcess, processInterval) as any
+    return stop
+  }, 500)
 
   while (!stop) try {
     const
