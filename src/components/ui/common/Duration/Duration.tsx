@@ -26,11 +26,11 @@ const
       result.push(`${days}${t('labels.time.daysShort')}`)
     }
 
-    if (hours) {
+    if (hours || days) {
       result.push(`${hours}${t('labels.time.hoursShort')}`)
     }
 
-    if (minutes) {
+    if (minutes || hours) {
       result.push(`${minutes}${t('labels.time.minutesShort')}`)
     }
 
