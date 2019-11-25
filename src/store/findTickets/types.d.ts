@@ -29,20 +29,20 @@ interface ITicket extends IBaseTicket<ITicketSegment> {
   id: string
 }
 
-interface ITicketFiltersTransfer {
+interface ITicketFiltersTransferState {
   available: number[]
   selected: number[]
 }
 
-interface ITicketFilters {
-  transfers: ITicketFiltersTransfer
+interface ITicketFiltersState {
+  transfers: ITicketFiltersTransferState
 }
 
 interface IFindTicketsState {
   tickets: ITicket[]
   statuses: IFetchingStatuses
   sortBy: TTicketsSortBy
-  filters: ITicketFilters
+  filters: ITicketFiltersState
   pagination: IPagination
 }
 

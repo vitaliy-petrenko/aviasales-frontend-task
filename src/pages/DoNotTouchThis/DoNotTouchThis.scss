@@ -44,6 +44,11 @@ $planeTransform: translate(-50%, 0) rotate(26deg);
   color: #FFF;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
   & > * {
     will-change: transform;
     position: absolute;
@@ -109,19 +114,6 @@ $planeTransform: translate(-50%, 0) rotate(26deg);
     }
   }
 
-  & > :nth-child(5) {
-    color: #FFF;
-    font-size: 20vh;
-    font-weight: 900;
-    left: 50%;
-    top: 35vh;
-    transform: translate(-50%, -50%);
-
-    &:after {
-      content: '404';
-    }
-  }
-
   @keyframes skewie {
     0% {
       transform: skew(0deg)
@@ -140,10 +132,10 @@ $planeTransform: translate(-50%, 0) rotate(26deg);
     }
   }
 
-  & > :nth-child(6), & > :nth-child(7) {
+  & > :nth-child(5), & > :nth-child(7) {
+    position: relative;
+    z-index: 2;
     width: 100%;
-    top: 0;
-    margin-top: 10vh;
     font-size: 8vh;
     font-weight: 900;
     animation: skewie 2s infinite;
@@ -155,10 +147,20 @@ $planeTransform: translate(-50%, 0) rotate(26deg);
     }
   }
 
+  & > :nth-child(6) {
+    position: relative;
+    color: #FFF;
+    font-size: 20vh;
+    font-weight: 900;
+    margin: 3vh 0;
+
+    &:after {
+      content: '404';
+    }
+  }
+
   & > :nth-child(7) {
     font-size: 5vh;
-    top: auto;
-    bottom: 45vh;
     animation: skewie 2s reverse infinite;
 
     &:after {
@@ -167,22 +169,20 @@ $planeTransform: translate(-50%, 0) rotate(26deg);
   }
 
   & > :nth-child(8) {
-    z-index: 1;
-    left: 50%;
-    bottom: 24vh;
-    transform: translate(-50%, 0) scale(1.5);
+    margin-top: 4vh;
+    position: relative;
+    z-index: 2;
     text-shadow: none;
   }
 
   :nth-child(9) {
-    z-index: 1;
-    left: 50%;
-    bottom: 17vh;
-    transform: translate(-50%, 0);
+    margin-top: 2vh;
+    position: relative;
     font-weight: 900;
     font-size: 2.5vh;
     color: #262626;
     text-shadow: none;
+    z-index: 2;
 
     &:after {
       content: '(за билетами, конечно)'

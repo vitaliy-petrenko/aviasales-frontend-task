@@ -6,7 +6,7 @@ import { toggleInArray } from '../../../helpers/misc'
 
 export interface IProps {
   setSelectedTransfersOptions: (options: number[]) => TActionFilterTransfers,
-  filters: ITicketFilters
+  filters: ITicketFiltersState
 }
 
 const Sidebar: React.FC<IProps> = ({ setSelectedTransfersOptions, filters }) => {
