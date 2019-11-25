@@ -1,44 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##### **https://vitaliy-petrenko.github.io/aviasales-frontend-task/#/find-tickets**
 
-## Available Scripts
+`yarn install && yarn run start`
 
-In the project directory, you can run:
 
-### `yarn start`
+# Тестовое задание Aviasales ([frontend](https://aviasales.recruitee.com/o/frontend-developer-js-coffeescript-react%C2%A0redux--aviasalesru))
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Основной frontend проект нашей команды — это страница выдачи билетов со множеством фильтров, настроек и, собственно, билетов.
+Проект написан на React, поэтому тестовое задание приближено к ежедневным задачам.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Перед тобой упрощенный макет нашего проекта — список билетов, фильтры и сортировка. Также у нас есть небольшой сервер для тестового задания, который работает схоже с нашим основным backend движком и реализует технику long polling для передачи пачек билетов. Тебе необходимо реализовать клиент, который будет получать случайно сгенерированные билеты от сервера и отрисует интерфейс согласно макету в Figma. Достаточно будет отрендерить 5 первых билетов соотвествующих выбранным фильрам и сортировки.
 
-### `yarn test`
+## Условия
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Используй React
+- Используй TS или JS
+- Работоспособность в актуальной версии Google Chrome
+- Остальное на твоё усмотрение
 
-### `yarn build`
+## Документация по работе с сервером: [Здесь](https://github.com/KosyanMedia/test-tasks/blob/master/aviasales_frontend/server.md)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Макет
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+https://www.figma.com/file/4fQe1lEbo4DARjvNtaU0uJ/Aviasales-test-task
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Залогинься, чтобы видеть CSS-свойства элементов
 
-### `yarn eject`
+![](search_preview.png?raw=true)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Удачи! Если будут какие-то вопросы, пиши – добавим уточнения в репу.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+P.S.: Картинки авиакомпаний можешь брать с нашего CDN: `//pics.avs.io/99/36/{IATA_CODE_HERE}.png`
