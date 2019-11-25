@@ -16,7 +16,6 @@ const
 export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
   const
     searchId = await fetchTicketsSearchId(),
-    tickets = [],
     path = `${TICKETS_PATH}?searchId=${searchId}`
 
   let stop = false
@@ -28,13 +27,10 @@ export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
       normalized = rawTickets.map(normalizeTicket)
 
     process(normalized)
-    tickets.push(...normalized)
     stop = result.stop
   } catch (error) {
     console.warn(error)
   }
-
-  return tickets
 }
 
 export const getImage = (carrierCode: string) => `//pics.avs.io/99/36/${carrierCode}.png`

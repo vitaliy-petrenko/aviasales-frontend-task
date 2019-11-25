@@ -15,17 +15,9 @@ const Sidebar: React.FC<IProps> = ({ setSelectedTransfersOptions, filters }) => 
     { selected, available } = filters.transfers,
     isAllSelected = available.length === selected.length,
 
-    onToggleAll = () => {
-      if (selected.length && isAllSelected) {
-        setSelectedTransfersOptions([])
-      } else {
-        setSelectedTransfersOptions([...available])
-      }
-    },
+    onToggleAll = () => setSelectedTransfersOptions(selected.length && isAllSelected ? [] : [...available]),
 
-    onToggle = (option: number) => {
-      setSelectedTransfersOptions(toggleInArray(selected, option))
-    }
+    onToggle = (option: number) => setSelectedTransfersOptions(toggleInArray(selected, option))
 
   return (
     <FiltersSection title='Количество пересадок'>
