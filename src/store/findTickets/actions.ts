@@ -74,9 +74,14 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
 
   pollTickets(
     tickets => {
+      const newMaxTransfersCount = getMaxTransfersCount(tickets)
+
       dispatch(addTickets(tickets))
-      maxTransfersCount = getMaxTransfersCount(tickets)
-      dispatch(setAvailableTransfersOptions(orderedArray(maxTransfersCount + 1)))
+
+      if (newMaxTransfersCount > maxTransfersCount) {
+        dispatch(setAvailableTransfersOptions(orderedArray(newMaxTransfersCount + 1)))
+        maxTransfersCount = newMaxTransfersCount
+      }
 
       if (!firstSegmentPolled) {
         dispatch(setFetchingLoadingStatus(false))
