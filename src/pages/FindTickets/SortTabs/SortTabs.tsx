@@ -9,30 +9,32 @@ export interface IProps {
   selectSortBy: (count: TTicketsSortByState) => TActionSortBy
 }
 
-const sortByVariants = [ETicketsSortBy.price, ETicketsSortBy.duration]
-
 const SortTabs: React.FC<IProps> = ({ sortBy, selectSortBy }) => {
-  const [t] = useTranslation()
+  const
+    [t] = useTranslation(),
+    sortByPriceIsActive = sortBy === ETicketsSortBy.price,
+    selectSortByPrice = () => !sortByPriceIsActive && selectSortBy(ETicketsSortBy.price),
+    selectSortByDuration = () => sortByPriceIsActive && selectSortBy(ETicketsSortBy.duration)
 
   return (
     <ButtonGroup>
-      {
-        sortByVariants.map(variant => {
-          const isActive = sortBy === variant
+      <Button
+        div
+        type={sortByPriceIsActive ? 'primary' : 'secondary'}
+        size='lg'
+        onClick={selectSortByPrice}
+      >
+        {t(`findTickets.tabs.${ETicketsSortBy.price}`)}
+      </Button>
 
-          return (
-            <Button
-              div
-              key={variant}
-              type={isActive ? 'primary' : 'secondary'}
-              size='lg'
-              onClick={() => !isActive && selectSortBy(variant)}
-            >
-              {t(`findTickets.tabs.${variant}`)}
-            </Button>
-          )
-        })
-      }
+      <Button
+        div
+        type={!sortByPriceIsActive ? 'primary' : 'secondary'}
+        size='lg'
+        onClick={selectSortByDuration}
+      >
+        {t(`findTickets.tabs.${ETicketsSortBy.duration}`)}
+      </Button>
     </ButtonGroup>
   )
 }

@@ -6,12 +6,11 @@ const
   KEY_PATH = config.base + config.gateWays.searchKey,
   TICKETS_PATH = config.base + config.gateWays.tickets
 
-const
-  fetchTicketsSearchId = async (): Promise<string> => {
-    const { searchId } = await fetchJSON(KEY_PATH)
+const fetchTicketsSearchId = async (): Promise<string> => {
+  const { searchId } = await fetchJSON(KEY_PATH)
 
-    return searchId
-  }
+  return searchId
+}
 
 const withInterval = (fn: () => boolean, delay: number) => {
   const run = () => {
@@ -48,8 +47,7 @@ export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
   }, 500)
 
   while (!stop) try {
-    const
-      result = await fetchJSON(path)
+    const result = await fetchJSON(path)
 
     stop = result.stop
 
