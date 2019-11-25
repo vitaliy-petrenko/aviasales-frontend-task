@@ -1,4 +1,4 @@
-### demo here - **https://vitaliy-petrenko.github.io/aviasales-frontend-task/#/find-tickets**
+### demo here - **https://vitaliy-petrenko.github.io/aviasales-frontend-task/**
 
 `yarn install && yarn run start`
 or
