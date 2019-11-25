@@ -9,6 +9,10 @@ export const getSortBy = (state: IState): number => state.findTickets.sortBy
 export const getPagination = (state: IState): IPagination => state.findTickets.pagination
 export const getAllTicketsList = (state: IState): ITicket[] => state.findTickets.tickets
 
+const accumulateDuration = (segments: ITicketSegment[]): number => {
+  return segments.reduce((accumulate, { duration }) => accumulate + duration, 0)
+}
+
 /** reselect */
 export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSortByState, ITicket[]>(
   getAllTicketsList,
@@ -40,12 +44,6 @@ export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketF
       return count === allStops.length
     })
   })
-
-
-const accumulateDuration = (segments: ITicketSegment[]): number => {
-  return segments.reduce((accumulate, { duration }) => accumulate + duration, 0)
-}
-
 
 export const getFinalTicketList = createSelector<IState, ITicket[], IPagination, ITicket[]>(
   getTicketsListFiltered,
