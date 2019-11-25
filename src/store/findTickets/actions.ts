@@ -2,7 +2,7 @@ import { Dispatch } from 'react'
 import { createAction } from '@reduxjs/toolkit'
 import { pollTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
-import { orderedArray } from '../../helpers/misc'
+import { arraysIsSame, mergeArrays } from '../../helpers/misc'
 
 export const setFetchingLoadingStatus = createAction(
   ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
@@ -55,18 +55,20 @@ export const setSelectedTransfersOptions = createAction(
   })
 )
 
-const getMaxTransfersCount = (tickets: ITicket[]): number => {
-  let count = 0
+const getAvailableOptions = (tickets: ITicket[]): number[] => {
+  let availableOptions = new Set<number>()
 
-  tickets.forEach(ticket => ticket.segments.forEach(({ stops }) => count = Math.max(count, stops.length)))
+  for (let i = 0; i < tickets.length; i++) {
+    tickets[i].segments.forEach(({ stops }) => availableOptions.add.call(availableOptions, stops.length))
+  }
 
-  return count
+  return Array.from(availableOptions).sort()
 }
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   let
-    maxTransfersCount = 0,
-    firstSegmentPolled = false
+    firstSegmentPolled = false,
+    lastAvailableOptions: number[] = []
 
   dispatch(setFetchingErrorStatus(false))
   dispatch(setFetchingLoadingStatus(true))
@@ -74,13 +76,13 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
 
   pollTickets(
     tickets => {
-      const newMaxTransfersCount = getMaxTransfersCount(tickets)
-
       dispatch(addTickets(tickets))
 
-      if (newMaxTransfersCount > maxTransfersCount) {
-        dispatch(setAvailableTransfersOptions(orderedArray(newMaxTransfersCount + 1)))
-        maxTransfersCount = newMaxTransfersCount
+      const newAvailableOptions = getAvailableOptions(tickets)
+
+      if (!arraysIsSame(lastAvailableOptions, newAvailableOptions)) {
+        lastAvailableOptions = mergeArrays(lastAvailableOptions, newAvailableOptions).sort()
+        dispatch(setAvailableTransfersOptions(lastAvailableOptions))
       }
 
       if (!firstSegmentPolled) {
