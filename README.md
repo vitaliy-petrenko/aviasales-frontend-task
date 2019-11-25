@@ -1,6 +1,8 @@
-####demo here - **https://vitaliy-petrenko.github.io/aviasales-frontend-task/#/find-tickets**
+## demo here - **https://vitaliy-petrenko.github.io/aviasales-frontend-task/#/find-tickets**
 
 `yarn install && yarn run start`
+or
+`npm install && npm run start`
 
 
 # Тестовое задание Aviasales ([frontend](https://aviasales.recruitee.com/o/frontend-developer-js-coffeescript-react%C2%A0redux--aviasalesru))
