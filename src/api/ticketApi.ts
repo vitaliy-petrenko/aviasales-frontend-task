@@ -13,7 +13,7 @@ const
     return searchId
   }
 
-export const fetchTickets = async (process: (tickets: ITicket[]) => any) => {
+export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
   const
     searchId = await fetchTicketsSearchId(),
     tickets = [],

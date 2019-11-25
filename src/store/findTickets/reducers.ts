@@ -5,6 +5,7 @@ import {
   clearFindTickets,
   selectSortBy,
   setAvailableTransfersOptions,
+  setFetchingLoadingAllStatus,
   setFetchingLoadingStatus,
   setSelectedTransfersOptions
 } from './actions'
@@ -15,6 +16,7 @@ const INITIAL_STATE: IFindTicketsState = {
   statuses: {
     isFetching: false,
     isError: false,
+    isFetchingAll: false,
   },
 
   tickets: [],
@@ -72,6 +74,10 @@ export const tickets = createReducer(INITIAL_STATE.tickets, {
 })
 
 export const statuses = createReducer(INITIAL_STATE.statuses, {
+  [setFetchingLoadingAllStatus.type]: (state, action) => ({
+    ...state,
+    isFetchingAll: action.payload,
+  }),
   [setFetchingLoadingStatus.type]: (state, action) => ({
     ...state,
     isError: action.payload,

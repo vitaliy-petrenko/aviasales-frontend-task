@@ -12,7 +12,7 @@ const TicketsList: React.FC<Omit<IProps, 'isError'>> = ({ statuses, tickets }) =
   const
     list = tickets.map(ticket => (
       <div className='tickets-list__item' key={ticket.id}>
-        <FadeIn initialX={8} duration={.2}>
+        <FadeIn initialX={8} duration={.25}>
           <Ticket ticket={ticket}/>
         </FadeIn>
       </div>

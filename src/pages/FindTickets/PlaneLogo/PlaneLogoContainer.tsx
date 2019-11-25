@@ -6,7 +6,7 @@ import { getFetchingStatuses } from '../../../store/findTickets/selectors'
 type TStateProps = IProps;
 
 const mapStateToProps = (state: IState): TStateProps => ({
-  animated: getFetchingStatuses(state).isFetching,
+  animated: getFetchingStatuses(state).isFetchingAll,
 })
 
 export default connect(mapStateToProps)(PlaneLogo)

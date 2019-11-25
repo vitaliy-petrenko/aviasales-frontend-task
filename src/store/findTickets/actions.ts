@@ -1,11 +1,18 @@
 import { Dispatch } from 'react'
 import { createAction } from '@reduxjs/toolkit'
-import { fetchTickets as apiFetchTickets } from '../../api/ticketApi'
+import { pollTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { orderedArray } from '../../helpers/misc'
 
 export const setFetchingLoadingStatus = createAction(
   ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
+  (status: boolean) => ({
+    payload: status,
+  })
+)
+
+export const setFetchingLoadingAllStatus = createAction(
+  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING_ALL,
   (status: boolean) => ({
     payload: status,
   })
@@ -57,21 +64,29 @@ const getMaxTransfersCount = (tickets: ITicket[]): number => {
 }
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
-  let maxTransfersCount = 0
+  let
+    maxTransfersCount = 0,
+    firstSegmentPolled = false
 
   dispatch(setFetchingErrorStatus(false))
   dispatch(setFetchingLoadingStatus(true))
+  dispatch(setFetchingLoadingAllStatus(true))
 
-  apiFetchTickets(
+  pollTickets(
     tickets => {
       dispatch(addTickets(tickets))
       maxTransfersCount = getMaxTransfersCount(tickets)
       dispatch(setAvailableTransfersOptions(orderedArray(maxTransfersCount + 1)))
+
+      if (!firstSegmentPolled) {
+        dispatch(setFetchingLoadingStatus(false))
+        firstSegmentPolled = true
+      }
     })
     .catch(() => {
       dispatch(setFetchingErrorStatus(true))
     })
     .finally(() => {
-      dispatch(setFetchingLoadingStatus(false))
+      dispatch(setFetchingLoadingAllStatus(false))
     })
 }
