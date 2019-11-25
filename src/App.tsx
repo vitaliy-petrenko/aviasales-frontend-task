@@ -2,7 +2,7 @@ import React from 'react'
 import DoNotTouchThis from './pages/DoNotTouchThis'
 import FindTickets from './pages/FindTickets'
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 
 const App: React.FC = () => (
   <Router>
