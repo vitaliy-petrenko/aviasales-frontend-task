@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { sortBy as _sortBy } from 'lodash'
 import { IState } from '../rootReducer'
 import { ETicketsSortBy } from './reducers'
 
@@ -16,13 +15,9 @@ export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSo
   getSortBy,
   (tickets, sortBy) => {
     if (sortBy === ETicketsSortBy.duration) {
-
-      return _sortBy(tickets, (ticket) => accumulateDuration(ticket.segments))
-
+      return tickets.slice().sort((a, b) => accumulateDuration(a.segments) - accumulateDuration(b.segments))
     } else if (sortBy === ETicketsSortBy.price) {
-
-      return _sortBy(tickets, ({ price }) => price)
-
+      return tickets.slice().sort((a, b) => a.price - b.price)
     } else {
       return tickets
     }
