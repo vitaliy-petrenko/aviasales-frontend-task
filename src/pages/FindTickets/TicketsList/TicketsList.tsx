@@ -26,10 +26,10 @@ const TicketsList: React.FC<Omit<IProps, 'isError'>> = ({ statuses, tickets }) =
 
   return (
     <div className='tickets-list'>
+      {list}
       {statuses.isFetching && (
         <Loading/>
       )}
-      {list}
       {notFound}
     </div>
   )

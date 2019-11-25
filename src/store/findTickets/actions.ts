@@ -48,24 +48,26 @@ export const setSelectedTransfersOptions = createAction(
   })
 )
 
-const getAvailableOptions = (tickets: ITicket[]): number[] => {
+const getMaxTransfersCount = (tickets: ITicket[]): number => {
   let count = 0
 
   tickets.forEach(ticket => ticket.segments.forEach(({ stops }) => count = Math.max(count, stops.length)))
 
-  return orderedArray(count + 1)
+  return count
 }
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
+  let maxTransfersCount = 0
+
   dispatch(setFetchingErrorStatus(false))
   dispatch(setFetchingLoadingStatus(true))
 
-  apiFetchTickets()
-    .then(
-      tickets => {
-        dispatch(addTickets(tickets))
-        dispatch(setAvailableTransfersOptions(getAvailableOptions(tickets)))
-      })
+  apiFetchTickets(
+    tickets => {
+      dispatch(addTickets(tickets))
+      maxTransfersCount = getMaxTransfersCount(tickets)
+      dispatch(setAvailableTransfersOptions(orderedArray(maxTransfersCount + 1)))
+    })
     .catch(() => {
       dispatch(setFetchingErrorStatus(true))
     })

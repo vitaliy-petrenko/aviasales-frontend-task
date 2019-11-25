@@ -13,7 +13,7 @@ const
     return searchId
   }
 
-export const fetchTickets = async () => {
+export const fetchTickets = async (process: (tickets: ITicket[]) => any) => {
   const
     searchId = await fetchTicketsSearchId(),
     tickets = [],
@@ -24,9 +24,11 @@ export const fetchTickets = async () => {
   while (!stop) try {
     const
       result = await fetchJSON(path),
-      rawTickets = result.tickets
+      rawTickets = result.tickets,
+      normalized = rawTickets.map(normalizeTicket)
 
-    tickets.push(...rawTickets.map(normalizeTicket))
+    process(normalized)
+    tickets.push(...normalized)
     stop = result.stop
   } catch (error) {
     console.warn(error)
