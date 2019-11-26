@@ -8,7 +8,7 @@ export interface IProps {
   tickets: ITicket[]
 }
 
-const TicketsList: React.FC<Omit<IProps, 'isError'>> = ({ statuses, tickets }) => {
+const TicketsList: React.FC<IProps> = ({ statuses, tickets }) => {
   const
     list = tickets.map(ticket => (
       <div className='tickets-list__item' key={ticket.id}>
