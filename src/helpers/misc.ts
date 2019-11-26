@@ -12,7 +12,7 @@ export const mergeArrays = <T>(array1: T[], array2: T[]): T[] => {
   return Array.from(set)
 }
 
-export const arraysIsSame = <T>(array1: T[], array2: T[]): boolean => {
+export const arraysAreSame = <T>(array1: T[], array2: T[]): boolean => {
   if (array1.length !== array2.length) return false
 
   for (let i = 0; i < array1.length; i++) {
