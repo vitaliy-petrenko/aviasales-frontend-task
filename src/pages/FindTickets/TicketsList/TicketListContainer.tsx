@@ -5,8 +5,7 @@ import TicketsList, { IProps } from './TicketsList'
 import { IState } from '../../../store/rootReducer'
 import { clearFindTickets, fetchTickets } from '../../../store/findTickets/actions'
 import { getFetchingStatuses, getFinalTicketList } from '../../../store/findTickets/selectors'
-import withData from '../../../hoc'
-import { IWithData } from '../../../hoc/withData'
+import withData, { IWithData } from '../../../hoc/withData'
 
 type TStateProps = IProps;
 type TDispatchProps = Pick<IWithData, 'fetch' | 'reset'>
