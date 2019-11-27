@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import Ticket, { TicketLoading } from '../../../components/Ticket/Ticket'
 import FadeIn from '../../../components/ui/common/FadeIn'
 import { useTranslation } from 'react-i18next'
