@@ -8,14 +8,12 @@ export interface IProps {
   tickets: ITicket[]
 }
 
-const MemoizedTicket = memo(Ticket)
-
 const TicketsList: React.FC<IProps> = ({ statuses, tickets }) => {
   const
     list = tickets.map(ticket => (
       <div className='tickets-list__item' key={ticket.id}>
         <FadeIn initialX={8} duration={.25}>
-          <MemoizedTicket ticket={ticket}/>
+          <Ticket ticket={ticket}/>
         </FadeIn>
       </div>
     )),
