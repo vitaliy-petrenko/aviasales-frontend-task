@@ -1,7 +1,7 @@
 import React from 'react'
 import Checkbox from '../../../components/ui/forms/Checkbox'
 import FiltersSection from '../../../components/ui/forms/FiltersSection'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { toggleInArray } from '../../../helpers/misc'
 
 export interface IProps {
@@ -48,20 +48,28 @@ interface IFilterCheckBoxProps {
   onToggle(value: number): void
 }
 
-const CheckboxFilter: React.FC<IFilterCheckBoxProps> = ({ option, onToggle, checked }) => {
-  const
-    [t] = useTranslation(),
-    onChange = () => onToggle(option)
+class CheckboxFilter extends React.Component<IFilterCheckBoxProps> {
+  onChange = () => this.props.onToggle(this.props.option)
 
-  return (
-    <Checkbox
-      key={option}
-      checked={checked}
-      onChange={onChange}
-    >
-      {t(`findTickets.transfers.label${option === 0 ? 'Zero' : ''}`, { count: option })}
-    </Checkbox>
-  )
+  shouldComponentUpdate(nextProps: Readonly<IFilterCheckBoxProps>, nextState: Readonly<{}>, nextContext: any): boolean {
+    return this.props.checked !== nextProps.checked
+  }
+
+  render() {
+    const
+      { option, checked } = this.props,
+      translation = `findTickets.transfers.label${option === 0 ? 'Zero' : ''}`
+
+    return (
+      <Checkbox
+        key={option}
+        checked={checked}
+        onChange={this.onChange}
+      >
+        <Trans count={option}>{translation}</Trans>
+      </Checkbox>
+    )
+  }
 }
 
 export default Sidebar
