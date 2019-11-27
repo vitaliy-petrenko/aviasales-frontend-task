@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Ticket, { TicketLoading } from '../../../components/Ticket/Ticket'
 import FadeIn from '../../../components/ui/common/FadeIn'
 import { useTranslation } from 'react-i18next'
@@ -8,12 +8,14 @@ export interface IProps {
   tickets: ITicket[]
 }
 
+const MemoizedTicket = memo(Ticket)
+
 const TicketsList: React.FC<IProps> = ({ statuses, tickets }) => {
   const
     list = tickets.map(ticket => (
       <div className='tickets-list__item' key={ticket.id}>
         <FadeIn initialX={8} duration={.25}>
-          <Ticket ticket={ticket}/>
+          <MemoizedTicket ticket={ticket}/>
         </FadeIn>
       </div>
     )),

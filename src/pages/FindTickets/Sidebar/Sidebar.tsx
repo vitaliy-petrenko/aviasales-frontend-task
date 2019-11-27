@@ -16,7 +16,6 @@ const Sidebar: React.FC<IProps> = ({ setSelectedTransfersOptions, filters }) => 
     isAllSelected = available.length === selected.length,
 
     onToggleAll = () => setSelectedTransfersOptions(selected.length && isAllSelected ? [] : [...available]),
-
     onToggle = (option: number) => setSelectedTransfersOptions(toggleInArray(selected, option))
 
   return (
@@ -30,16 +29,38 @@ const Sidebar: React.FC<IProps> = ({ setSelectedTransfersOptions, filters }) => 
 
       {
         available.map(option => (
-          <Checkbox
+          <CheckboxFilter
             key={option}
+            option={option}
             checked={selected.includes(option)}
-            onChange={() => onToggle(option)}
-          >
-            {t(`findTickets.transfers.label${option === 0 ? 'Zero' : ''}`, { count: option })}
-          </Checkbox>
+            onToggle={onToggle}
+          />
         ))
       }
     </FiltersSection>
+  )
+}
+
+interface IFilterCheckBoxProps {
+  option: number
+  checked: boolean
+
+  onToggle(value: number): void
+}
+
+const CheckboxFilter: React.FC<IFilterCheckBoxProps> = ({ option, onToggle, checked }) => {
+  const
+    [t] = useTranslation(),
+    onChange = () => onToggle(option)
+
+  return (
+    <Checkbox
+      key={option}
+      checked={checked}
+      onChange={onChange}
+    >
+      {t(`findTickets.transfers.label${option === 0 ? 'Zero' : ''}`, { count: option })}
+    </Checkbox>
   )
 }
 

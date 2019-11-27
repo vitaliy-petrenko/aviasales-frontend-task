@@ -28,31 +28,31 @@ export const getTicketsListSorted = createSelector<IState, ITicket[], TTicketsSo
   }
 )
 
-export const getTicketsListFiltered = createSelector<IState, ITicket[], ITicketFiltersState, ITicket[]>(
+export const getFinalTicketList = createSelector<IState, ITicket[], ITicketFiltersState, IPagination, ITicket[]>(
   getTicketsListSorted,
   getFilters,
-  (tickets, { transfers }) => {
+  getPagination,
+  (tickets, { transfers }, { offset, limit }) => {
     const
       getTransfersCounts = (ticket: ITicket): number[] => ticket.segments.map(({ stops }) => stops.length),
       isAllSelected = transfers.selected.length === transfers.available.length,
-      isNothingSelected = !transfers.selected.length
+      isNothingSelected = !transfers.selected.length,
+      filtered: ITicket[] = []
 
-    if (isAllSelected) return tickets
+    if (isAllSelected) return tickets.slice(offset, offset + limit)
     if (isNothingSelected) return []
 
-    return tickets.filter(ticket => {
-      const allStops = getTransfersCounts(ticket)
+    for (let i = 0; i < tickets.length && filtered.length < offset + limit; i++) {
+      const
+        ticket = tickets[i],
+        allStops = getTransfersCounts(ticket)
 
       let count = 0
 
       allStops.forEach(stopCount => transfers.selected.includes(stopCount) && count++)
 
-      return count === allStops.length
-    })
-  })
+      if (count === allStops.length) filtered.push(ticket)
+    }
 
-export const getFinalTicketList = createSelector<IState, ITicket[], IPagination, ITicket[]>(
-  getTicketsListFiltered,
-  getPagination,
-  (tickets, { offset, limit }) => tickets.slice(offset, offset + limit)
-)
+    return filtered
+  })
