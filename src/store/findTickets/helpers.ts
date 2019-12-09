@@ -40,3 +40,13 @@ export const filterTickets = (tickets: ITicket[], { transfers }: ITicketFiltersS
 
   return filtered
 }
+
+export const getAvailableOptions = (tickets: ITicket[]): number[] => {
+  let availableOptions = new Set<number>()
+
+  for (let i = 0; i < tickets.length; i++) {
+    tickets[i].segments.forEach(({ stops }) => availableOptions.add.call(availableOptions, stops.length))
+  }
+
+  return Array.from(availableOptions).sort()
+}

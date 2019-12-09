@@ -3,6 +3,7 @@ import { createAction } from '@reduxjs/toolkit'
 import { pollTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { arraysAreSame, joinArrays, uniqArrayItems } from '../../helpers/misc'
+import { getAvailableOptions } from './helpers'
 
 export const setFetchingLoadingStatus = createAction(
   ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
@@ -54,16 +55,6 @@ export const setSelectedTransfersOptions = createAction(
     payload: options
   })
 )
-
-const getAvailableOptions = (tickets: ITicket[]): number[] => {
-  let availableOptions = new Set<number>()
-
-  for (let i = 0; i < tickets.length; i++) {
-    tickets[i].segments.forEach(({ stops }) => availableOptions.add.call(availableOptions, stops.length))
-  }
-
-  return Array.from(availableOptions).sort()
-}
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   let
