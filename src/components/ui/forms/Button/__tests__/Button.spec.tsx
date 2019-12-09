@@ -1,5 +1,5 @@
 import React from 'react'
-import Button, { getButtonClassName } from '../../../../components/ui/forms/Button/Button'
+import Button, { getButtonClassName } from '../Button'
 import { shallow, ShallowWrapper } from 'enzyme'
 
 describe('Button component', () => {

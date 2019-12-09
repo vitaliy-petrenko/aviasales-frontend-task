@@ -1,4 +1,4 @@
-import { IBEMProps, makeBemClassNames, makeBEMModifier } from '../../helpers/bem'
+import { IBEMProps, makeBemClassNames, makeBEMModifier } from '../bem'
 
 describe('bem modifier', () => {
   it('zero', () => {

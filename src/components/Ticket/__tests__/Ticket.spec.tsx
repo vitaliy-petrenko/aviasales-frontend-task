@@ -1,5 +1,5 @@
 import React from 'react'
-import Ticket, { TicketLoading, TicketSegment, TicketSegmentItem } from '../../components/Ticket/Ticket'
+import Ticket, { TicketLoading, TicketSegment, TicketSegmentItem } from '../Ticket'
 import { shallow } from 'enzyme'
 import i18next from 'i18next'
 

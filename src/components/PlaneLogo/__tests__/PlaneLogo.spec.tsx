@@ -1,5 +1,5 @@
 import React from 'react'
-import PlaneLogo from '../../components/PlaneLogo'
+import PlaneLogo from '../index'
 import { shallow } from 'enzyme'
 
 describe('PlaneLogo component', () => {

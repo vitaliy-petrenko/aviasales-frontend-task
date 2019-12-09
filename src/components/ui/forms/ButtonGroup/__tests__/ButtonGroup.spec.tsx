@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonGroup from '../../../../components/ui/forms/ButtonGroup'
+import ButtonGroup from '../index'
 import { shallow } from 'enzyme'
 
 describe('ButtonGroup component', () => {

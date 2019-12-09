@@ -1,4 +1,4 @@
-import { normalizeTicket, normalizeTicketSegment } from '../../normalizers/ticketNormalizers'
+import { normalizeTicket, normalizeTicketSegment } from '../ticketNormalizers'
 
 const ticketSegment: IRawTicketSegment = {
   origin: 'origin',

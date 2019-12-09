@@ -1,4 +1,4 @@
-import { arraysAreSame, joinArrays, orderedArray, toggleInArray, uniqArrayItems } from '../../helpers/misc'
+import { arraysAreSame, joinArrays, orderedArray, toggleInArray, uniqArrayItems } from '../misc'
 
 describe('ordered array', () => {
   it('zero', () => {

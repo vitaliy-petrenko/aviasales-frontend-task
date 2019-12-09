@@ -1,4 +1,4 @@
-import { formatDurationFromMinutes, formatDurationInHours, formatFromTo } from '../../helpers/formatters'
+import { formatDurationFromMinutes, formatDurationInHours, formatFromTo } from '../formatters'
 
 describe('format from to', () => {
   it('zero', () => {
