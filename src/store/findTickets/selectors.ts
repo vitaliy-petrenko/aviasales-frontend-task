@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { IState } from '../rootReducer'
-import { filterTickets, sortTickets } from './helpers'
+import { filterTicketsWithPagination, sortTickets } from './helpers'
 
 /** simple selectors */
 export const getFetchingStatuses = (state: IState): IFetchingStatuses => state.findTickets.statuses
@@ -20,5 +20,5 @@ export const getFinalTicketList = createSelector<IState, ITicket[], ITicketFilte
   getTicketsListSorted,
   getFilters,
   getPagination,
-  filterTickets,
+  filterTicketsWithPagination,
 )

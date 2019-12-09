@@ -17,7 +17,7 @@ export const sortTickets = (tickets: ITicket[], sortBy: ETicketsSortBy) => {
 
 export const getTransfersCounts = (ticket: ITicket): number[] => ticket.segments.map(({ stops }) => stops.length)
 
-export const filterTickets = (tickets: ITicket[], { transfers }: ITicketFiltersState, { offset, limit }: IPagination) => {
+export const filterTicketsWithPagination = (tickets: ITicket[], { transfers }: ITicketFiltersState, { offset, limit }: IPagination) => {
   const
     isAllSelected = arraysAreSame(transfers.selected, transfers.available),
     isNothingSelected = !transfers.selected.length,
@@ -38,7 +38,7 @@ export const filterTickets = (tickets: ITicket[], { transfers }: ITicketFiltersS
     if (count === allStops.length) filtered.push(ticket)
   }
 
-  return filtered
+  return filtered.slice(offset)
 }
 
 export const getAvailableOptions = (tickets: ITicket[]): number[] => {

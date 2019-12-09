@@ -1,19 +1,19 @@
-import { accumulateDuration, filterTickets, getTransfersCounts, sortTickets } from '../helpers'
+import { accumulateDuration, filterTicketsWithPagination, getTransfersCounts, sortTickets } from '../helpers'
 import { ETicketsSortBy } from '../reducers'
 
-const ticketSegment: ITicketSegment = {
+export const ticketSegment: ITicketSegment = {
   id: 'segmentId',
-  origin: 'origin',
-  destination: 'destination',
+  origin: '',
+  destination: '',
   date: '2019-12-18T06:18:00.000Z',
   stops: ['a', 'b'],
   duration: 60,
 }
 
-const ticket: ITicket = {
-  price: 100,
-  carrier: 'ua',
+export const ticket: ITicket = {
   id: 'ticketId',
+  price: 100,
+  carrier: '',
   segments: [ticketSegment],
 }
 
@@ -61,13 +61,13 @@ describe('helpers', () => {
   it('filter zero tickets', () => {
     const tickets: ITicket[] = []
 
-    expect(filterTickets(tickets, { transfers: { selected: [0], available: [0] } }, {
+    expect(filterTicketsWithPagination(tickets, { transfers: { selected: [0], available: [0] } }, {
       offset: 2,
       limit: 2
     })).toEqual([])
   })
 
-  it('filter tickets', () => {
+  it('filter tickets with pagination', () => {
     const tickets = [
       {
         ...ticket,
@@ -111,15 +111,12 @@ describe('helpers', () => {
       }
     ]
 
-    /**
-     * will filter tickets from (0) to (offset + limit), not from (offset) to (offset + limit)
-     */
     expect(
-      filterTickets(
+      filterTicketsWithPagination(
         tickets,
         { transfers: { selected: [1], available: [0, 1, 2] } },
         { offset: 1, limit: 2 }
       ).map(({ id }) => id)
-    ).toEqual(['1', '3', '4'])
+    ).toEqual(['3', '4'])
   })
 })

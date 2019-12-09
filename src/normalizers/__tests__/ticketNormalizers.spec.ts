@@ -1,8 +1,8 @@
 import { normalizeTicket, normalizeTicketSegment } from '../ticketNormalizers'
 
 const ticketSegment: IRawTicketSegment = {
-  origin: 'origin',
-  destination: 'destination',
+  origin: '',
+  destination: '',
   date: '2019-12-18T06:18:00.000Z',
   stops: ['a', 'b'],
   duration: 60,
@@ -10,7 +10,7 @@ const ticketSegment: IRawTicketSegment = {
 
 const ticket: IRawTicket = {
   price: 100,
-  carrier: 'ua',
+  carrier: '',
   segments: [ticketSegment],
 }
 

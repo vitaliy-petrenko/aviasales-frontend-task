@@ -9,23 +9,7 @@ import {
   setFetchingLoadingStatus,
   setSelectedTransfersOptions
 } from '../actions'
-
-const ticketSegment: ITicketSegment = {
-  id: 'segmentId',
-  origin: 'origin',
-  destination: 'destination',
-  date: '2019-12-18T06:18:00.000Z',
-  stops: ['a', 'b'],
-  duration: 60,
-}
-
-const ticket: ITicket = {
-  price: 100,
-  carrier: 'ua',
-  id: 'ticketId',
-  segments: [ticketSegment],
-}
-
+import { ticket } from './helpers.spec'
 
 describe('findTickets/reducers', () => {
   describe('statuses', () => {
