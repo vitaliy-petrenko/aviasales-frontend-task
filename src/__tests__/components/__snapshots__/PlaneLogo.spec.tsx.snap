@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlaneLogo component renders properly 1`] = `
+<div
+  className="plane-logo"
+>
+  <ForwardRef(MotionComponent)
+    animate={
+      Object {
+        "rotate": 0,
+        "scale": 1,
+      }
+    }
+    className="plane-logo__earth"
+    transition={
+      Object {
+        "duration": 0.5,
+        "loop": 0,
+      }
+    }
+  />
+  <div
+    className="plane-logo__plane-wrap"
+  >
+    <ForwardRef(MotionComponent)
+      animate={
+        Object {
+          "rotate": 0,
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+        }
+      }
+      className="plane-logo__plane"
+      transition={
+        Object {
+          "duration": 0.5,
+          "loop": 0,
+        }
+      }
+    />
+  </div>
+</div>
+`;

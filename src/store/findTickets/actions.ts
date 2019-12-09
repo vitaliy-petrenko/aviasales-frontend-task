@@ -2,7 +2,7 @@ import { Dispatch } from 'react'
 import { createAction } from '@reduxjs/toolkit'
 import { pollTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
-import { arraysAreSame, mergeArrays } from '../../helpers/misc'
+import { arraysAreSame, joinArrays, uniqArrayItems } from '../../helpers/misc'
 
 export const setFetchingLoadingStatus = createAction(
   ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
@@ -81,7 +81,7 @@ export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
       const newAvailableOptions = getAvailableOptions(tickets)
 
       if (!arraysAreSame(lastAvailableOptions, newAvailableOptions)) {
-        lastAvailableOptions = mergeArrays(lastAvailableOptions, newAvailableOptions).sort()
+        lastAvailableOptions = uniqArrayItems(joinArrays(lastAvailableOptions, newAvailableOptions)).sort()
         dispatch(setAvailableTransfersOptions(lastAvailableOptions))
       }
 

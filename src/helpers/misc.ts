@@ -1,15 +1,15 @@
-export const orderedArray = (count: number): number[] => Array.from(Array(count).keys())
+export const orderedArray = (count: number): number[] => Array.from(Array(count < 0 ? 0 : count).keys())
 
 export const toggleInArray = <T>(array: T[], item: T): T[] => {
   return array.includes(item) ? array.filter(a => item !== a) : [...array, item]
 }
 
-export const mergeArrays = <T>(array1: T[], array2: T[]): T[] => {
-  const set = new Set<T>(array1)
+export const joinArrays = <T>(array1: T[], array2: T[]): T[] => {
+  return [...array1, ...array2]
+}
 
-  array2.forEach(set.add.bind(set))
-
-  return Array.from(set)
+export const uniqArrayItems = <T>(array: T[]) => {
+  return Array.from(new Set<T>(array))
 }
 
 export const arraysAreSame = <T>(array1: T[], array2: T[]): boolean => {

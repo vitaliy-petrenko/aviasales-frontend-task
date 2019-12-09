@@ -5,14 +5,15 @@ import {
   clearFindTickets,
   selectSortBy,
   setAvailableTransfersOptions,
+  setFetchingErrorStatus,
   setFetchingLoadingAllStatus,
   setFetchingLoadingStatus,
   setSelectedTransfersOptions
 } from './actions'
 
-export enum ETicketsSortBy {price, duration}
+export enum ETicketsSortBy { price, duration }
 
-const INITIAL_STATE: IFindTicketsState = {
+export const INITIAL_STATE: IFindTicketsState = {
   statuses: {
     isFetching: false,
     isError: false,
@@ -76,7 +77,7 @@ export const statuses = createReducer(INITIAL_STATE.statuses, {
     ...state,
     isFetchingAll: action.payload,
   }),
-  [setFetchingLoadingStatus.type]: (state, action) => ({
+  [setFetchingErrorStatus.type]: (state, action) => ({
     ...state,
     isError: action.payload,
   }),

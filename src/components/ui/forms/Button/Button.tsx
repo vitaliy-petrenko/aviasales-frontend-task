@@ -35,7 +35,7 @@ const Button: React.FC<IProps> =
     )
   }
 
-const getButtonClassName = ({ type, size, isLoading, block, isDisabled }: ButtonClassProps) => {
+export const getButtonClassName = ({ type, size, isLoading, block, isDisabled }: ButtonClassProps) => {
   const modifiers = []
 
   if (type) modifiers.push(type)

@@ -3,6 +3,7 @@
 @import 'abstract/variables';
 @import 'abstract/mixins';
 @import './font';
+@import './grid.scss';
 
 html {
   background: var(--color-general-background);

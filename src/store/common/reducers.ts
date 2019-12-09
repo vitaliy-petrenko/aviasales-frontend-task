@@ -1,4 +1,4 @@
-const CURRENCIES = {
+export const CURRENCIES = {
   RUB: {
     name: 'RUB',
     symbol: 'Р'
@@ -9,7 +9,7 @@ const CURRENCIES = {
   }
 }
 
-const INITIAL_STATE: ICommonState = {
+export const INITIAL_STATE: ICommonState = {
   currency: CURRENCIES.RUB,
   locale: 'ru-RU',
 }
