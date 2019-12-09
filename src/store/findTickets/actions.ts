@@ -4,57 +4,31 @@ import { pollTickets } from '../../api/ticketApi'
 import ACTION_TYPES from '../actionTypes'
 import { arraysAreSame, joinArrays, uniqArrayItems } from '../../helpers/misc'
 import { getAvailableOptions } from './helpers'
+import { ETicketsSortBy } from './reducers'
 
-export const setFetchingLoadingStatus = createAction(
-  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING,
-  (status: boolean) => ({
-    payload: status,
-  })
-)
+export const setFetchingLoadingStatus =
+  createAction<boolean>(ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING)
 
-export const setFetchingLoadingAllStatus = createAction(
-  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING_ALL,
-  (status: boolean) => ({
-    payload: status,
-  })
-)
+export const setFetchingLoadingAllStatus =
+  createAction<boolean>(ACTION_TYPES.FIND_TICKETS.STATUSES.IS_FETCHING_ALL)
 
-export const setFetchingErrorStatus = createAction(
-  ACTION_TYPES.FIND_TICKETS.STATUSES.IS_ERROR,
-  (status: boolean) => ({
-    payload: status,
-  })
-)
+export const setFetchingErrorStatus =
+  createAction<boolean>(ACTION_TYPES.FIND_TICKETS.STATUSES.IS_ERROR)
 
-export const addTickets = createAction(
-  ACTION_TYPES.FIND_TICKETS.TICKETS.ADD,
-  (tickets: ITicket[]) => ({
-    payload: tickets,
-  })
-)
+export const addTickets =
+  createAction<ITicket[]>(ACTION_TYPES.FIND_TICKETS.TICKETS.ADD)
 
-export const clearFindTickets = createAction(ACTION_TYPES.FIND_TICKETS.CLEAR)
+export const clearFindTickets =
+  createAction(ACTION_TYPES.FIND_TICKETS.CLEAR)
 
-export const selectSortBy = createAction(
-  ACTION_TYPES.FIND_TICKETS.SORT_BY,
-  (sortBy: TTicketsSortByState) => ({
-    payload: sortBy,
-  })
-)
+export const selectSortBy =
+  createAction<ETicketsSortBy>(ACTION_TYPES.FIND_TICKETS.SORT_BY)
 
-export const setAvailableTransfersOptions = createAction(
-  ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS,
-  (options: number[]) => ({
-    payload: options,
-  })
-)
+export const setAvailableTransfersOptions =
+  createAction<number[]>(ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_AVAILABLE_OPTIONS)
 
-export const setSelectedTransfersOptions = createAction(
-  ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS,
-  (options: number[]) => ({
-    payload: options
-  })
-)
+export const setSelectedTransfersOptions =
+  createAction<number[]>(ACTION_TYPES.FIND_TICKETS.FILTERS.TRANSFERS.SET_SELECTED_OPTIONS)
 
 export const fetchTickets = () => (dispatch: Dispatch<TAppAnyAction>) => {
   let
