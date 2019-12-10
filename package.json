@@ -46,9 +46,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",
+    "test:generate-output": "CI=true react-scripts test --json --outputFile=.jest-test-results.json || true",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build:storybook",
+    "deploy": "gh-pages -d build",
+    "storybook": "npm run test:generate-output && start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build:storybook": "build-storybook -c .storybook -o build/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -69,5 +73,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-jest": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "babel-loader": "^8.0.6"
   }
 }
