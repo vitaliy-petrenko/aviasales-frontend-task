@@ -1,5 +1,4 @@
-@import '../../../styles/abstract/variables';
-@import '../../../styles/abstract/mixins';
+@import '../../../styles/abstract';
 
 $sidebarWidth: 232px;
 $layoutOffset: $grid-base;
@@ -27,7 +26,7 @@ $layoutOffset: $grid-base;
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@include mobile {
   .layout {
     flex-direction: column;
   }

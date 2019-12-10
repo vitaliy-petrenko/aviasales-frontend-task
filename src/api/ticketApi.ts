@@ -6,54 +6,32 @@ const
   KEY_PATH = config.base + config.gateWays.searchKey,
   TICKETS_PATH = config.base + config.gateWays.tickets
 
-const fetchTicketsSearchId = async (): Promise<string> => {
-  const { searchId } = await fetchJSON(KEY_PATH)
+export const fetchTicketsSearchId = async () => {
+  try {
+    const { searchId } = await fetchJSON(KEY_PATH)
 
-  return searchId
-}
-
-const withInterval = (fn: () => boolean, delay: number) => {
-  const run = () => {
-    setTimeout(() => {
-      const result = fn()
-
-      if (!result) {
-        run()
-      }
-    }, delay)
-  }
-
-  run()
-}
-
-export const pollTickets = async (process: (tickets: ITicket[]) => any) => {
-  let
-    stop = false,
-    rawTickets: IRawTicket[] = []
-
-  const
-    searchId = await fetchTicketsSearchId(),
-    path = `${TICKETS_PATH}?searchId=${searchId}`
-
-  withInterval(() => {
-    if (rawTickets.length) {
-      const normalized = rawTickets.map(normalizeTicket)
-
-      process(normalized)
-      rawTickets = []
-    }
-
-    return stop
-  }, 500)
-
-  while (!stop) try {
-    const result = await fetchJSON(path)
-
-    stop = result.stop
-
-    rawTickets.push(...result.tickets)
+    return searchId
   } catch (error) {
     console.warn(error)
+    return null
+  }
+}
+
+export const fetchTickets = async (searchId: string) => {
+  const
+    path = `${TICKETS_PATH}?searchId=${searchId}`
+
+  try {
+    const result = await fetchJSON(path)
+
+    return {
+      stop: result.stop,
+      tickets: result.tickets.map(normalizeTicket)
+    }
+  } catch (error) {
+    console.warn(error)
+
+    return null;
   }
 }
 

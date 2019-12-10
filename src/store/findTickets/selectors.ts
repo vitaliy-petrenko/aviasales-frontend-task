@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { IState } from '../rootReducer'
+import { IState } from '../root'
 import { filterTicketsWithPagination, sortTickets } from './helpers'
 
 /** simple selectors */

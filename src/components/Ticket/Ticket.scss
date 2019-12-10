@@ -1,11 +1,14 @@
-@import '../../styles/abstract/variables';
-@import '../../styles/abstract/mixins';
+@import '../../styles/abstract';
 
 $ticket-max-image-height: 36px;
 
 .ticket {
   @include panel;
   @include panel-body;
+
+  @include mobile {
+    @include cols-without-gutter;
+  }
 }
 
 .ticket__body {

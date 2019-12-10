@@ -10,27 +10,33 @@ export interface IProps {
 
 const TicketsList: React.FC<IProps> = ({ statuses, tickets }) => {
   const
-    list = tickets.map(ticket => (
-      <div className='tickets-list__item' key={ticket.id}>
-        <FadeIn initialX={8} duration={.25}>
-          <Ticket ticket={ticket}/>
-        </FadeIn>
-      </div>
-    )),
-    notFound = !tickets.length && !statuses.isFetching && (
-      <div className='tickets-list__item'>
-        <TicketsNotFound/>
-      </div>
-    )
-
+    showPreloader = statuses.isFetching && !tickets.length,
+    showNotFound = !tickets.length && !statuses.isFetching,
+    showList = !!tickets.length
 
   return (
     <div className='tickets-list'>
-      {list}
-      {statuses.isFetching && (
+
+      {showList && (
+        tickets.map(ticket => (
+          <div className='tickets-list__item' key={ticket.id}>
+            <FadeIn initialX={8} duration={.25}>
+              <Ticket ticket={ticket}/>
+            </FadeIn>
+          </div>
+        ))
+      )}
+
+      {showPreloader && (
         <Loading/>
       )}
-      {notFound}
+
+      {showNotFound && (
+        <div className='tickets-list__item'>
+          <TicketsNotFound/>
+        </div>
+      )}
+
     </div>
   )
 }

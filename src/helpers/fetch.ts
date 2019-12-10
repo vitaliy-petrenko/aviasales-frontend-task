@@ -8,6 +8,6 @@ export const fetchJSON = async (path: string) => {
       status = response.status,
       text = await response.text()
 
-    return Promise.reject(`${status}: ${text}`)
+    return Promise.reject(`${path} ${status}: ${text}`)
   }
 }

@@ -1,4 +1,4 @@
-import { IState } from './store/rootReducer'
+import { IState } from './store/root'
 import translationService from './services/translation'
 import momentService from './services/moment'
 import { getLocale } from './store/common/selectors'

@@ -1,11 +1,13 @@
 import { applyMiddleware, createStore, Middleware } from 'redux'
 import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import * as reduxLogger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import reducers from './rootReducer'
+import { rootReducer, rootSaga } from './root'
 
 const
-  middlewares: Middleware[] = [thunk],
+  sagaMiddleware = createSagaMiddleware(),
+  middlewares: Middleware[] = [thunk, sagaMiddleware],
   isDevMode = process.env.NODE_ENV === 'development'
 
 if (isDevMode) {
@@ -18,4 +20,8 @@ if (isDevMode) {
   enhancer = composeWithDevTools(enhancer)
 }
 
-export default enhancer(createStore)(reducers)
+const store = enhancer(createStore)(rootReducer)
+
+sagaMiddleware.run(rootSaga)
+
+export default store
