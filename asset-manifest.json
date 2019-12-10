@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/aviasales-frontend-task/static/css/main.90fda99c.chunk.css",
-    "main.js": "/aviasales-frontend-task/static/js/main.b8e17361.chunk.js",
-    "main.js.map": "/aviasales-frontend-task/static/js/main.b8e17361.chunk.js.map",
+    "main.css": "/aviasales-frontend-task/static/css/main.b4c0121d.chunk.css",
+    "main.js": "/aviasales-frontend-task/static/js/main.6e96e798.chunk.js",
+    "main.js.map": "/aviasales-frontend-task/static/js/main.6e96e798.chunk.js.map",
     "runtime-main.js": "/aviasales-frontend-task/static/js/runtime-main.e91bb5a8.js",
     "runtime-main.js.map": "/aviasales-frontend-task/static/js/runtime-main.e91bb5a8.js.map",
-    "static/js/2.7e837491.chunk.js": "/aviasales-frontend-task/static/js/2.7e837491.chunk.js",
-    "static/js/2.7e837491.chunk.js.map": "/aviasales-frontend-task/static/js/2.7e837491.chunk.js.map",
+    "static/js/2.3f4cc38b.chunk.js": "/aviasales-frontend-task/static/js/2.3f4cc38b.chunk.js",
+    "static/js/2.3f4cc38b.chunk.js.map": "/aviasales-frontend-task/static/js/2.3f4cc38b.chunk.js.map",
     "index.html": "/aviasales-frontend-task/index.html",
-    "precache-manifest.a98da836ca94fee18e385ef348aa3d2e.js": "/aviasales-frontend-task/precache-manifest.a98da836ca94fee18e385ef348aa3d2e.js",
+    "precache-manifest.e06addfc8fe32fda766f949581454d63.js": "/aviasales-frontend-task/precache-manifest.e06addfc8fe32fda766f949581454d63.js",
     "service-worker.js": "/aviasales-frontend-task/service-worker.js",
-    "static/css/main.90fda99c.chunk.css.map": "/aviasales-frontend-task/static/css/main.90fda99c.chunk.css.map",
-    "static/js/2.7e837491.chunk.js.LICENSE": "/aviasales-frontend-task/static/js/2.7e837491.chunk.js.LICENSE",
+    "static/css/main.b4c0121d.chunk.css.map": "/aviasales-frontend-task/static/css/main.b4c0121d.chunk.css.map",
+    "static/js/2.3f4cc38b.chunk.js.LICENSE": "/aviasales-frontend-task/static/js/2.3f4cc38b.chunk.js.LICENSE",
     "static/media/check.b73f59a3.svg": "/aviasales-frontend-task/static/media/check.b73f59a3.svg",
     "static/media/PlaneLogo.scss": "/aviasales-frontend-task/static/media/plane.2eb1e28c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e91bb5a8.js",
-    "static/js/2.7e837491.chunk.js",
-    "static/css/main.90fda99c.chunk.css",
-    "static/js/main.b8e17361.chunk.js"
+    "static/js/2.3f4cc38b.chunk.js",
+    "static/css/main.b4c0121d.chunk.css",
+    "static/js/main.6e96e798.chunk.js"
   ]
 }
