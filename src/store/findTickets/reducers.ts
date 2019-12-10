@@ -1,15 +1,6 @@
-import { createReducer } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { orderedArray } from '../../helpers/misc'
-import {
-  addTickets,
-  clearFindTickets,
-  selectSortBy,
-  setAvailableTransfersOptions,
-  setFetchingErrorStatus,
-  setFetchingLoadingAllStatus,
-  setFetchingLoadingStatus,
-  setSelectedTransfersOptions
-} from './actions'
+import { clearFindTickets } from './actions'
 
 export enum ETicketsSortBy { price, duration }
 
@@ -17,7 +8,6 @@ export const INITIAL_STATE: IFindTicketsState = {
   statuses: {
     isFetching: false,
     isError: false,
-    isFetchingAll: false,
   },
 
   tickets: [],
@@ -37,61 +27,71 @@ export const INITIAL_STATE: IFindTicketsState = {
   },
 }
 
-export const transfers = createReducer(INITIAL_STATE.filters.transfers, {
-  [setSelectedTransfersOptions.type]: (state, action) => ({
-    ...state,
-    selected: action.payload,
-  }),
+export const transfers = createSlice({
+  name: 'tickets/filters/transfers',
+  initialState: INITIAL_STATE.filters.transfers,
+  reducers: {
+    setSelected: (state, action) => ({
+      ...state,
+      selected: action.payload,
+    }),
 
-  [setAvailableTransfersOptions.type]: (state, action) => {
-    const
-      { selected, available } = state,
-      isAllOptionsSelected = selected.length === available.length
+    setAvailable: (state, action) => {
+      const
+        { selected, available } = state,
+        isAllOptionsSelected = selected.length === available.length
 
-    return {
-      selected: isAllOptionsSelected ? [...action.payload] : selected,
-      available: action.payload,
+      return {
+        selected: isAllOptionsSelected ? [...action.payload] : selected,
+        available: action.payload,
+      }
     }
   },
-
-  [clearFindTickets.type]: () => ({
-    ...INITIAL_STATE.filters.transfers
-  })
+  extraReducers: {
+    [clearFindTickets.type]: () => INITIAL_STATE.filters.transfers
+  }
 })
 
-export const sortBy = createReducer(INITIAL_STATE.sortBy, {
-  [selectSortBy.type]: (state, action) => {
-    return action.payload
+export const sortBy = createSlice({
+  name: 'tickets/sortBy',
+  initialState: INITIAL_STATE.sortBy as ETicketsSortBy,
+  reducers: {
+    select: (state, action: TActionSortBy) => action.payload,
   },
-  [clearFindTickets.type]: () => INITIAL_STATE.sortBy
+  extraReducers: {
+    [clearFindTickets.type]: () => INITIAL_STATE.sortBy
+  }
 })
 
-export const tickets = createReducer(INITIAL_STATE.tickets, {
-  [addTickets.type]: (state, action) => [...state, ...action.payload],
-
-  [clearFindTickets.type]: (state, action) => [...INITIAL_STATE.tickets]
+export const tickets = createSlice({
+  name: 'tickets/list',
+  initialState: INITIAL_STATE.tickets as ITicket[],
+  reducers: {
+    add: (state, action) => [...state, ...action.payload],
+  },
+  extraReducers: {
+    [clearFindTickets.type]: () => INITIAL_STATE.tickets
+  }
 })
 
-export const statuses = createReducer(INITIAL_STATE.statuses, {
-  [setFetchingLoadingAllStatus.type]: (state, action) => ({
-    ...state,
-    isFetchingAll: action.payload,
-  }),
-  [setFetchingErrorStatus.type]: (state, action) => ({
-    ...state,
-    isError: action.payload,
-  }),
-  [setFetchingLoadingStatus.type]: (state, action) => ({
-    ...state,
-    isFetching: action.payload,
-  }),
-  [clearFindTickets.type]: () => ({
-    ...INITIAL_STATE.statuses
-  })
+export const statuses = createSlice({
+  name: 'tickets/statuses',
+  initialState: INITIAL_STATE.statuses as IFetchingStatuses,
+  reducers: {
+    setError: (state, action) => ({ ...state, isError: action.payload }),
+    setFetching: (state, action) => ({ isError: false, isFetching: action.payload })
+  },
+  extraReducers: {
+    [clearFindTickets.type]: () => INITIAL_STATE.statuses
+  }
 })
 
-export const pagination = createReducer(INITIAL_STATE.pagination, {
-  [clearFindTickets.type]: () => ({
-    ...INITIAL_STATE.pagination
-  })
+export const pagination = createSlice({
+  name: 'tickets/pagination',
+  initialState: INITIAL_STATE.pagination as IPagination,
+  reducers: {},
+  extraReducers: {
+    [clearFindTickets.type]: () => INITIAL_STATE.pagination
+  }
 })
+

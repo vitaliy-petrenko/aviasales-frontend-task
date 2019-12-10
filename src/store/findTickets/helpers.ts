@@ -41,12 +41,11 @@ export const filterTicketsWithPagination = (tickets: ITicket[], { transfers }: I
   return filtered.slice(offset)
 }
 
-export const getAvailableOptions = (tickets: ITicket[]): number[] => {
-  let availableOptions = new Set<number>()
+export const getAvailableTransfers = (tickets: ITicket[]): number[] => {
+  const availableTransfersSet = tickets.reduce((result, ticket) => {
+    getTransfersCounts(ticket).forEach(result.add.bind(result))
+    return result
+  }, new Set<number>())
 
-  for (let i = 0; i < tickets.length; i++) {
-    tickets[i].segments.forEach(({ stops }) => availableOptions.add.call(availableOptions, stops.length))
-  }
-
-  return Array.from(availableOptions).sort()
+  return Array.from(availableTransfersSet).sort()
 }
