@@ -1,7 +1,7 @@
-@import './abstract/variables';
+@import './abstract';
 /* simple 12-rows grid */
 
-$col-gutter: 0;
+$col-gutter: $grid-base;
 
 .row {
   display: flex;
@@ -13,7 +13,7 @@ $col-gutter: 0;
   align-items: center;
 }
 
-[class^='col-'] {
+[class^=col-] {
   flex-shrink: 0;
   flex-basis: 0;
   padding: 0 $col-gutter/2;

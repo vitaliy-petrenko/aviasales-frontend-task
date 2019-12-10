@@ -119,4 +119,8 @@ describe('helpers', () => {
       ).map(({ id }) => id)
     ).toEqual(['3', '4'])
   })
+
+  it('get available transfers', () => {
+    // expect(getTransfersCounts(ticket)).toEqual([ticket.segments[0].stops.length])
+  })
 })
