@@ -27,6 +27,10 @@ export const INITIAL_STATE: IFindTicketsState = {
   },
 }
 
+const getClearableExtraReducer = <T>(initialValue: T) => ({
+  [clearFindTickets.type]: () => initialValue
+})
+
 export const transfers = createSlice({
   name: 'tickets/filters/transfers',
   initialState: INITIAL_STATE.filters.transfers,
@@ -48,7 +52,7 @@ export const transfers = createSlice({
     }
   },
   extraReducers: {
-    [clearFindTickets.type]: () => INITIAL_STATE.filters.transfers
+    ...getClearableExtraReducer(INITIAL_STATE.filters.transfers)
   }
 })
 
@@ -59,7 +63,7 @@ export const sortBy = createSlice({
     select: (state, action: TActionSortBy) => action.payload,
   },
   extraReducers: {
-    [clearFindTickets.type]: () => INITIAL_STATE.sortBy
+    ...getClearableExtraReducer(INITIAL_STATE.sortBy)
   }
 })
 
@@ -70,7 +74,7 @@ export const tickets = createSlice({
     add: (state, action) => [...state, ...action.payload],
   },
   extraReducers: {
-    [clearFindTickets.type]: () => INITIAL_STATE.tickets
+    ...getClearableExtraReducer(INITIAL_STATE.tickets)
   }
 })
 
@@ -82,7 +86,7 @@ export const statuses = createSlice({
     setFetching: (state, action) => ({ isError: false, isFetching: action.payload })
   },
   extraReducers: {
-    [clearFindTickets.type]: () => INITIAL_STATE.statuses
+    ...getClearableExtraReducer(INITIAL_STATE.statuses)
   }
 })
 
@@ -91,7 +95,7 @@ export const pagination = createSlice({
   initialState: INITIAL_STATE.pagination as IPagination,
   reducers: {},
   extraReducers: {
-    [clearFindTickets.type]: () => INITIAL_STATE.pagination
+    ...getClearableExtraReducer(INITIAL_STATE.pagination)
   }
 })
 
