@@ -35,12 +35,12 @@ export const transfers = createSlice({
   name: 'tickets/filters/transfers',
   initialState: INITIAL_STATE.filters.transfers,
   reducers: {
-    setSelected: (state, action) => ({
+    setSelected: (state, action: TActionFilterTransfers) => ({
       ...state,
       selected: action.payload,
     }),
 
-    setAvailable: (state, action) => {
+    setAvailable: (state, action: TActionFilterTransfers) => {
       const
         { selected, available } = state,
         isAllOptionsSelected = selected.length === available.length
@@ -71,7 +71,7 @@ export const tickets = createSlice({
   name: 'tickets/list',
   initialState: INITIAL_STATE.tickets as ITicket[],
   reducers: {
-    add: (state, action) => [...state, ...action.payload],
+    add: (state, action: TActionAddTickets) => [...state, ...action.payload],
   },
   extraReducers: {
     ...getClearableExtraReducer(INITIAL_STATE.tickets)
@@ -82,8 +82,8 @@ export const statuses = createSlice({
   name: 'tickets/statuses',
   initialState: INITIAL_STATE.statuses as IFetchingStatuses,
   reducers: {
-    setError: (state, action) => ({ ...state, isError: action.payload }),
-    setFetching: (state, action) => ({ isError: false, isFetching: action.payload })
+    setError: (state, action: TActionFetchingStatus) => ({ ...state, isError: action.payload }),
+    setFetching: (state, action: TActionFetchingStatus) => ({ isError: false, isFetching: action.payload })
   },
   extraReducers: {
     ...getClearableExtraReducer(INITIAL_STATE.statuses)

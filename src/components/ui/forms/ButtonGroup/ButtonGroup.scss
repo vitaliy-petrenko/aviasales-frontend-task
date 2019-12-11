@@ -8,6 +8,10 @@
     border-radius: 0;
     padding-left: $grid-xxs;
     padding-right: $grid-xxs;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
     &:focus {
       z-index: 1;
