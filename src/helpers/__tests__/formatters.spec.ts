@@ -1,4 +1,4 @@
-import { formatDurationFromMinutes, formatDurationInHours, formatFromTo } from '../formatters'
+import { formatFromTo, prependZeroToTimeValue, parseDurationFromHours, parseDurationFromMinutes } from '../formatters'
 
 describe('format from to', () => {
   it('zero', () => {
@@ -14,48 +14,58 @@ describe('format from to', () => {
   })
 })
 
-const hoursFormat = {
+const duration = {
   days: 0,
   hours: 0,
-}
-
-const minutesFormat = {
-  ...hoursFormat,
   minutes: 0,
 }
 
-describe('format duration in hours', () => {
+describe('parse duration in hours', () => {
   it('zero', () => {
-    expect(formatDurationInHours(0)).toEqual({ ...hoursFormat })
+    expect(parseDurationFromHours(0)).toEqual({ ...duration })
   })
 
   it('< 24', () => {
-    expect(formatDurationInHours(1)).toEqual({ ...hoursFormat, hours: 1 })
+    expect(parseDurationFromHours(1)).toEqual({ ...duration, hours: 1 })
   })
 
   it('24', () => {
-    expect(formatDurationInHours(24)).toEqual({ ...hoursFormat, days: 1 })
+    expect(parseDurationFromHours(24)).toEqual({ ...duration, days: 1 })
   })
 
   it('> 24', () => {
-    expect(formatDurationInHours(25)).toEqual({ days: 1, hours: 1 })
+    expect(parseDurationFromHours(25)).toEqual({ days: 1, hours: 1, minutes: 0 })
   })
 })
 
-describe('format duration in minutes', () => {
+describe('parse duration in minutes', () => {
   it('zero', () => {
-    expect(formatDurationFromMinutes(0)).toEqual({ ...minutesFormat })
+    expect(parseDurationFromMinutes(0)).toEqual({ ...duration })
   })
 
   it('< 60', () => {
-    expect(formatDurationFromMinutes(30)).toEqual({ ...minutesFormat, minutes: 30 })
+    expect(parseDurationFromMinutes(30)).toEqual({ ...duration, minutes: 30 })
   })
 
   it('60', () => {
-    expect(formatDurationFromMinutes(60)).toEqual({ ...minutesFormat, hours: 1 })
+    expect(parseDurationFromMinutes(60)).toEqual({ ...duration, hours: 1 })
   })
 
   it('> 60', () => {
-    expect(formatDurationFromMinutes(61)).toEqual({ ...minutesFormat, hours: 1, minutes: 1 })
+    expect(parseDurationFromMinutes(61)).toEqual({ ...duration, hours: 1, minutes: 1 })
+  })
+})
+
+describe('prepend zero to time value', () => {
+  it('zero', () => {
+    expect(prependZeroToTimeValue(0)).toEqual('00')
+  })
+
+  it('one symbol', () => {
+    expect(prependZeroToTimeValue(9)).toEqual('09')
+  })
+
+  it('two symbols', () => {
+    expect(prependZeroToTimeValue(19)).toEqual('19')
   })
 })

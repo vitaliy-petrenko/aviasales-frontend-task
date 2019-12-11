@@ -1,5 +1,5 @@
 import React from 'react'
-import { formatDurationFromMinutes, TDurationParsed } from '../../../../helpers/formatters'
+import { prependZeroToTimeValue, parseDurationFromMinutes, TDurationParsed } from '../../../../helpers/formatters'
 import { useTranslation } from 'react-i18next'
 
 export enum EFormatFrom { minutes }
@@ -19,10 +19,10 @@ const format = ({ duration, t, from }: IFormatArgs): string => {
   let formatter
 
   if (from === EFormatFrom.minutes) {
-    formatter = formatDurationFromMinutes
+    formatter = parseDurationFromMinutes
   } else {
     //todo: add another formatter according to the 'from' attribute
-    formatter = formatDurationFromMinutes
+    formatter = parseDurationFromMinutes
   }
 
   const
@@ -30,16 +30,14 @@ const format = ({ duration, t, from }: IFormatArgs): string => {
     result: string[] = []
 
   if (days) {
-    result.push(`${days}${t('labels.time.daysShort')}`)}
-
+    result.push(`${days}${t('labels.time.daysShort')}`)
+  }
 
   if (hours || days) {
-    result.push(`${hours}${t('labels.time.hoursShort')}`)
+    result.push(`${days ? prependZeroToTimeValue(hours) : hours}${t('labels.time.hoursShort')}`)
   }
 
-  if (minutes || hours) {
-    result.push(`${minutes}${t('labels.time.minutesShort')}`)
-  }
+  result.push(`${prependZeroToTimeValue(minutes)}${t('labels.time.minutesShort')}`)
 
   return result.join(' ')
 }
