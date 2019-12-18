@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders properly 1`] = `
+<HashRouter>
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+    >
+      <Redirect
+        to="/find-tickets"
+      />
+    </Route>
+    <Route
+      exact={true}
+      path="/find-tickets"
+    >
+      <FindTickets />
+    </Route>
+    <Route
+      exact={true}
+      path="/o-privet"
+    >
+      <WTF />
+    </Route>
+    <Route
+      path="*"
+    >
+      <Redirect
+        to="/o-privet"
+      />
+    </Route>
+  </Switch>
+</HashRouter>
+`;

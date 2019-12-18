@@ -65,3 +65,14 @@
   word-break: break-all;
   word-break: break-word;
 }
+
+@mixin cols-without-gutter {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  [class^=col-] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

@@ -1,5 +1,4 @@
-@import '../../../../styles/abstract/variables';
-@import '../../../../styles/abstract/mixins';
+@import '../../../../styles/abstract';
 
 .button-group {
   display: flex;
@@ -7,6 +6,12 @@
   .btn {
     flex: 1;
     border-radius: 0;
+    padding-left: $grid-xxs;
+    padding-right: $grid-xxs;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
     &:focus {
       z-index: 1;

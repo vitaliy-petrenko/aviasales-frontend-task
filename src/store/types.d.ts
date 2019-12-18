@@ -17,7 +17,6 @@ interface IPagination {
 interface IFetchingStatuses {
   isFetching: boolean
   isError: boolean
-  isFetchingAll: boolean
 }
 
 type TAppAnyAction =

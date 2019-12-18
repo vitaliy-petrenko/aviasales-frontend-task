@@ -1,5 +1,4 @@
-@import '../../../../styles/abstract/mixins';
-@import '../../../../styles/abstract/variables';
+@import '../../../../styles/abstract';
 
 .checkbox {
   display: flex;
@@ -29,9 +28,11 @@
 }
 
 .checkbox__icon {
+  $size: 20px;
   display: block;
-  width: 20px;
-  height: 20px;
+  flex: 0 0 $size;
+  width: $size;
+  height: $size;
   border: 1px solid var(--color-form-option);
   border-radius: 2px;
   transition: border-color .05s;

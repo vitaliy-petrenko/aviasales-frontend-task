@@ -1,12 +1,13 @@
-@import '../../../../styles/abstract/mixins';
-@import '../../../../styles/abstract/variables';
+@import '../../../../styles/abstract';
+
+$filters-section-item-padding: $grid-base/2 $grid-base;
 
 .filters-section {
   @include panel;
-  @include panel-body;
+  padding: $grid-base/2 0 $grid-base/2;
 
   .checkbox {
-    padding: $grid-base/2 $grid-base;
+    padding: $filters-section-item-padding;
     transition: background-color .1s;
 
     &:hover {
@@ -23,10 +24,5 @@
   @include button-text;
   @include word-break;
   line-height: 1;
-}
-
-.filters-section__body {
-  @include panel-x-offset-fix;
-  margin-top: $grid-base/2;
-  margin-bottom: -$grid-base/2;
+  padding: $filters-section-item-padding;
 }

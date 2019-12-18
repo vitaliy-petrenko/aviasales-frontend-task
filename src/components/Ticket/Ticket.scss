@@ -1,31 +1,13 @@
-@import '../../styles/abstract/variables';
-@import '../../styles/abstract/mixins';
+@import '../../styles/abstract';
 
 $ticket-max-image-height: 36px;
 
 .ticket {
   @include panel;
   @include panel-body;
-}
 
-.ticket__row {
-  display: flex;
-  align-items: flex-start;
-}
-
-.ticket__col {
-  flex: 1;
-}
-
-.ticket__header {
-  .ticket__row {
-    align-items: center;
-  }
-
-  .ticket__col {
-    &:first-child {
-      flex: 2;
-    }
+  @include mobile {
+    @include cols-without-gutter;
   }
 }
 
@@ -64,7 +46,7 @@ $ticket-max-image-height: 36px;
     max-width: 140px;
   }
 
-  .ticket__header .ticket__col:first-child & {
+  .ticket__header .col:first-child & {
     height: 24px
   }
 
@@ -88,4 +70,10 @@ $ticket-max-image-height: 36px;
 
 .ticket-segment-item__value {
   @include font-size-lg;
+}
+
+.ticket-segment {
+  & + & {
+    margin-top: $grid-base/2;
+  }
 }

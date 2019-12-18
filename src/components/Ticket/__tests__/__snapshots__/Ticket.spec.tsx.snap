@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ticket Component Ticket main Ticket renders properly 1`] = `
+<div
+  className="ticket"
+>
+  <div
+    className="ticket__header"
+  >
+    <div
+      className="row row--center"
+    >
+      <div
+        className="col-xs-8"
+      >
+        <div
+          className="ticket-price"
+        >
+          <Connect(Price)
+            value={100}
+          />
+        </div>
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <div
+          className="ticket-company-logo"
+        >
+          <t
+            afterLoad={[Function]}
+            alt=""
+            beforeLoad={[Function]}
+            delayMethod="throttle"
+            delayTime={300}
+            effect=""
+            placeholderSrc=""
+            src="//pics.avs.io/99/36/ua.png"
+            threshold={100}
+            visibleByDefault={false}
+            wrapperClassName=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ticket__body"
+  >
+    <div
+      className="ticket-segments"
+    >
+      <TicketSegment
+        date="2019-12-18T06:18:00.000Z"
+        destination="destination"
+        duration={60}
+        id="segmentId"
+        key="segmentId"
+        origin="origin"
+        stops={
+          Array [
+            "a",
+            "b",
+          ]
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Ticket Component TicketLoading Loading renders properly 1`] = `
+<div
+  className="ticket"
+>
+  <div
+    className="ticket__header"
+  >
+    <div
+      className="row row--center"
+    >
+      <div
+        className="col-xs-8"
+      >
+        <TLoading />
+      </div>
+      <div
+        className="col-xs-4"
+      >
+        <TLoading />
+      </div>
+    </div>
+  </div>
+  <div
+    className="ticket__body"
+  >
+    <div
+      className="ticket-segments"
+    >
+      <div
+        className="ticket-segment row"
+      >
+        <div
+          className="col-xs-4"
+        >
+          <TLoading />
+          <TLoading />
+        </div>
+        <div
+          className="col-xs-4"
+        >
+          <TLoading />
+          <TLoading />
+        </div>
+        <div
+          className="col-xs-4"
+        >
+          <TLoading />
+          <TLoading />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Ticket Component TicketSegment TicketSegment renders properly 1`] = `
+<div
+  className="ticket-segment row"
+>
+  <div
+    className="col-xs-4"
+  >
+    <TicketSegmentItem
+      label="origin - destination"
+    >
+      8:18 AM - 9:18 AM
+    </TicketSegmentItem>
+  </div>
+  <div
+    className="col-xs-4"
+  >
+    <TicketSegmentItem
+      label="В пути"
+    >
+      <Duration
+        duration={60}
+      />
+    </TicketSegmentItem>
+  </div>
+  <div
+    className="col-xs-4"
+  >
+    <TicketSegmentItem
+      label="2 пересадки"
+    >
+      a - b
+    </TicketSegmentItem>
+  </div>
+</div>
+`;
+
+exports[`Ticket Component TicketSegmentItem TicketSegmentItem renders properly 1`] = `
+<div
+  className="ticket-segment-item"
+>
+  <div
+    className="ticket-segment-item__label"
+  >
+    label
+  </div>
+  <div
+    className="ticket-segment-item__value"
+  >
+    value
+  </div>
+</div>
+`;

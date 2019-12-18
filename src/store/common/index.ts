@@ -1,4 +1,7 @@
 import { combineReducers } from 'redux'
-import * as reducers from './reducers'
+import { currency, locale } from './reducers'
 
-export default combineReducers({ ...reducers })
+export default combineReducers({
+  currency,
+  locale
+})

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox component renders properly 1`] = `
+<label
+  className="checkbox"
+>
+  <input
+    checked={false}
+    type="checkbox"
+  />
+  <span
+    className="checkbox__icon"
+  >
+    <ForwardRef(SvgCheck) />
+  </span>
+  <span
+    className="checkbox__label"
+  />
+</label>
+`;
